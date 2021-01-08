@@ -455,10 +455,78 @@ How does it work?
     ```
 - Check the code under Bootsrapping section (the confidence code line will follow on that code)
 
+- The following example considers confidence intervals for the difference in means. This is similar to the Bootstrpping code above.
+- Open notebook under ```notebooks/Confidence Intervals - Difference in Means.ipynb```
+    ```
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    %matplotlib inline
+    np.random.seed(42)
+
+    full_data = pd.read_csv('../data/coffee_dataset.csv')
+    sample_data = full_data.sample(200)
+
+    diffs = []
+    for _ in range(10000):
+        bootsamp = sample_data.sample(200, replace = True)
+        coff_mean = bootsamp[bootsamp['drinks_coffee'] == True]['height'].mean()
+        nocoff_mean = bootsamp[bootsamp['drinks_coffee'] == False]['height'].mean()
+        diffs.append(coff_mean - nocoff_mean)
+        
+    np.percentile(diffs, 0.5), np.percentile(diffs, 99.5) 
+    # statistical evidence coffee drinkers are on average taller
+
+    diffs_coff_under21 = []
+    for _ in range(10000):
+        bootsamp = sample_data.sample(200, replace = True)
+        under21_coff_mean = bootsamp.query("age == '<21' and drinks_coffee == True")['height'].mean()
+        under21_nocoff_mean = bootsamp.query("age == '<21' and drinks_coffee == False")['height'].mean()
+        diffs_coff_under21.append(under21_nocoff_mean - under21_coff_mean)
+        
+    np.percentile(diffs_coff_under21, 2.5), np.percentile(diffs_coff_under21, 97.5)
+    # For the under21 group, we have evidence that the non-coffee drinkers are on average taller
+
+    diffs_coff_over21 = []
+    for _ in range(10000):
+        bootsamp = sample_data.sample(200, replace = True)
+        over21_coff_mean = bootsamp.query("age != '<21' and drinks_coffee == True")['height'].mean()
+        over21_nocoff_mean = bootsamp.query("age != '<21' and drinks_coffee == False")['height'].mean()
+        diffs_coff_over21.append(over21_nocoff_mean - over21_coff_mean)
+        
+    np.percentile(diffs_coff_over21, 2.5), np.percentile(diffs_coff_over21, 97.5)
+    # For the over21 group, we have evidence that on average the non-coffee drinkers are taller
+    ```
+- ***Confidence level***: e.g. 95% or, 99%
+- Assuming you control all other items of your analysis:
+    - Increasing your sample size will decrease the width of your confidence interval.
+    - Increasing your confidence level (say 95% to 99%) will increase the width of your confidence interval.
+
+- ***Confidence interval width*** is the difference between your upper and lower bounds of your confidence interval
+- ***Margin of error***: is half the confidence interval width, and the value that you add and subtract from your sample estimate to achieve your confidence interval final results.
+
+# Confidence Intervals (& Hypothesis Testing) vs. Machine Learning
+- Confidence intervals take an aggregate approach towards the conclusions made based on data, as these tests are aimed at understanding population parameters (which are aggregate population values).
+
+- Alternatively, machine learning techniques take an individual approach towards making conclusions, as they attempt to predict an outcome for each specific data point. 
+
+# Practical and Statistical Significance
+- Using confidence intervals and hypothesis testing, you are able to provide statistical significance in making decisions.
+- However, it is also important to take into consideration practical significance in making decisions. Practical significance takes into consideration other factors of your situation that might not be considered directly in the results of your hypothesis test or confidence interval. Constraints like space, time, or money are important in business decisions. However, they might not be accounted for directly in a statistical test.
+
+# Bootstrapping + Sampling Distributions or Hypothesis Testing?
+- Bootstrpping + Sampling Distributions is a powerful method for builing confidence intervals for essentially any parameters we might be interested in.
+- Bootstrapping can replace t-test, two-sample t-test, paired t-test, z-test, chi-squared test, f-test
+- If you truly believe that your data is representative of the population dataset, the bootstrapping method should provide better confidence intervall results
+- However: With large enough sample sizes Bootstrapping and Traditional Methods will provide essentially the same result.
+
 # [Inference Statistics in Python](https://towardsdatascience.com/hypothesis-testing-in-machine-learning-using-python-a0dc89e169ce) <a name="infer"></a>
 - ***What is hypothesis testing?***
 
     A hypothesis is “an idea that can be tested”. Hypothesis testing is a statistical method used for making decisions based on experimental data. It's basically an assumption that we make about the population parameter.
+
+
 
 
 - ***What are the basics of hypothesis testing?***

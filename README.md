@@ -9,8 +9,9 @@
 [image9]: assets/sampling_dis_2.png "image9"
 [image10]: assets/bootstrap.png "image10"
 [image11]: assets/confidence.png "image11"
-[image12]: assets/confidence_1.png "image11"
-[image13]: assets/confidence_2.png "image11"
+[image12]: assets/confidence_1.png "image12"
+[image13]: assets/confidence_2.png "image13"
+[image14]: assets/hypo_guide.png "image14"
 [image16]: assets/norm.png "image16"
 [image17]: assets/norm_eq.png "image17"
 [image18]: assets/std_norm_eq.png "image18"
@@ -22,9 +23,15 @@
 [image24]: assets/two_sided.png "image24"
 [image25]: assets/stat_error.png "image25"
 [image26]: assets/stat_error2.png "image26"
-[image27]: assets/p_value.png "image27"
+[image27]: assets/p_value_3.png "image27"
 [image28]: assets/hypo_test_table.png "image28"
 [image29]: assets/critical_val.png "image29"
+[image30]: assets/type_1.png "image30"
+[image31]: assets/type_2.png "image31"
+[image32]: assets/types_of_error.png "image32"
+[image33]: assets/p_value_1.png "image33"
+[image34]: assets/p_value_2.png "image34"
+[image35]: assets/hypo_conclusion.png "image35"
 
 # Practical Statistics 
 
@@ -521,17 +528,17 @@ How does it work?
 - If you truly believe that your data is representative of the population dataset, the bootstrapping method should provide better confidence intervall results
 - However: With large enough sample sizes Bootstrapping and Traditional Methods will provide essentially the same result.
 
-# [Inference Statistics in Python](https://towardsdatascience.com/hypothesis-testing-in-machine-learning-using-python-a0dc89e169ce) <a name="infer"></a>
-- ***What is hypothesis testing?***
+# [Inference Statistics: Hypotheis testing](https://towardsdatascience.com/hypothesis-testing-in-machine-learning-using-python-a0dc89e169ce) <a name="infer"></a>
+## What is hypothesis testing?
 
-    A hypothesis is “an idea that can be tested”. Hypothesis testing is a statistical method used for making decisions based on experimental data. It's basically an assumption that we make about the population parameter.
+- A hypothesis is “an idea that can be tested”. Hypothesis testing is a statistical method used for making decisions based on experimental data. It's basically an assumption that we make about the population parameter.
+- Hypothesis Testing and Confidence Intervals allow us to use only sample data to draw conclusions about an entire population
 
 
 
+## What are the basics of hypothesis testing?
 
-- ***What are the basics of hypothesis testing?***
-
-    The basic of hypothesis is [normalisation](https://en.wikipedia.org/wiki/Normalization_(statistics)) and [standard normalisation](https://stats.stackexchange.com/questions/10289/whats-the-difference-between-normalization-and-standardization). All hypothesis is based on these 2 terms.
+- The basic of hypothesis is [normalisation](https://en.wikipedia.org/wiki/Normalization_(statistics)) and [standard normalisation](https://stats.stackexchange.com/questions/10289/whats-the-difference-between-normalization-and-standardization). All hypothesis is based on these 2 terms.
 
     ![image16]
 
@@ -549,94 +556,162 @@ How does it work?
 
         <img src="https://render.githubusercontent.com/render/math?math=X_{new}=\frac{x - \mu}{\sigma}" width="200px">
 
-- ***What are important parameters of hypothesis testing?***
+## What are important parameters of hypothesis testing?
 
-    - ***Null hypothesis***: The null hypothesis is the hypothesis to be  tested.
+- ***Null hypothesis vs. Alternate hypotheis***: 
 
-      It is the status-quo. Everything which was believed until now that we are contesting with our test.
+    ![image14]
 
-      The concept of the null is similar to: innocent until proven guilty. We assume innocence until we have enough evidence to prove that a suspect is guilty.
+- Innocent until proven guilty:
+    - H0: Innocent, i.e. is true before we collect any data
+    - H1: Guilty, i.e. an individual is guilty
 
-        <img src="https://render.githubusercontent.com/render/math?math=H_{0}: \mu_{1} = \mu_{2}" width="200px">
+- Example
 
-
-    - ***Alternative hypothesis***: The alternative hypothesis is the change or innovation that is contesting the status-quo.
-
-      Usually the alternative is our own opinion. The idea is the following:
-      If the null is the status-quo (i.e., what is generally believed), then the act of performing a test, shows we have doubts about the truthfulness of the null. More often than not the researcher’s opinion is contained in the alternative hypothesis.
+    - <img src="https://render.githubusercontent.com/render/math?math=H_{0}: \mu_{1} = \mu_{2}" width="200px">
 
 
-      <img src="https://render.githubusercontent.com/render/math?math=H_{1}: \mu_{1} \neq \mu_{2}" width="200px">
+    - <img src="https://render.githubusercontent.com/render/math?math=H_{1}: \mu_{1} \neq \mu_{2}" width="200px">
 
 
-    - ***Decisions you can take***:
-      - ***accept*** the null hypothesis. To accept the null means that there isn’t enough data to support the change or the innovation brought by the alternative.
-      - ***reject*** the null hypothesis. To reject the null means that there is enough statistical evidence that the status-quo is not representative of the truth.
+- ***Decisions you can take***:
+    - ***accept*** the null hypothesis. To accept the null means that there isn’t enough data to support the change or the innovation brought by the alternative.
+    - ***reject*** the null hypothesis. To reject the null means that there is enough statistical evidence that the status-quo is not representative of the truth.
 
-      ![image29]
-
-      ![image22]
-
-      Different ways of reporting the result:
-
-      ***Accept***:
-      - At x% significance, we accept the null hypothesis
-      - At x% significance, A is not significantly different from B
-      - At x% significance, there is not enough statistical evidence that…
-      - At x% significance, we cannot reject the null hypothesis
-
-      ***Reject***:
-      - At x% significance, we reject the null hypothesis
-      - At x% significance, A is significantly different from B
-      - At x% significance, there is enough statistical evidence…
-      - At x% significance, we cannot say that *restate the null*
-
-    - ***Level of significance***: The probability of rejecting a null hypothesis that is true; the probability of making this error.
-
-        Common significance levels: 0.10,  0.05, 0.01
-
-    - ***Statistical errors***
-      In general, there are two types of errors we can make while testing: Type I error (False positive) and Type II Error (False negative).
-
-    - ***Type I error***: When we reject the null hypothesis, although that hypothesis was true. The probability of committing Type I error (False positive) is equal to the significance level (α).
-
-    - ***Type II errors***: When we accept the null hypothesis but it is false. The probability of committing Type II error (False negative) is equal to the beta (β).
-
-        ![image25]
-
-        ![image26]
-
-    - ***One-sided test***: Used when the null doesn’t contain equality or inequality sign (<,>,≤,≥)
-
-        ![image23]
-
-    - ***Two-sided test***: Used when the null contains an equality (=) or an inequality sign (≠)
-
-        ![image22]
+    ![image29]
 
 
-    - ***P-value***:  The p-value is the smallest level of significance at which we can still reject the null hypothesis, given the observed sample statistic
-    If P value is less than the chosen significance level then you reject the null hypothesis i.e. you accept  alternative hypothesis.
+    Different ways of reporting the result:
 
-        ![image27]
-        
-        Here is a link to a [p_value claculator](#https://www.socscistatistics.com/pvalues/)
+    ***Accept***:
+    - At x% significance, we accept the null hypothesis
+    - At x% significance, A is not significantly different from B
+    - At x% significance, there is not enough statistical evidence that…
+    - At x% significance, we cannot reject the null hypothesis
+
+    ***Reject***:
+    - At x% significance, we reject the null hypothesis
+    - At x% significance, A is significantly different from B
+    - At x% significance, there is enough statistical evidence…
+    - At x% significance, we cannot say that *restate the null*
+
+- ***Level of significance***: The probability of rejecting a null hypothesis that is true; the probability of making this error.
+
+    Common significance levels: 0.10,  0.05, 0.01
+
+- ***Statistical errors***
+    In general, there are two types of errors we can make while testing: Type I error (False positive) and Type II Error (False negative).
+
+- ***Type I error***: When we reject the null hypothesis, although that hypothesis was true. The probability of committing Type I error (False positive) is equal to the significance level (α).
+
+- ***Type II errors***: When we accept the null hypothesis but it is false. The probability of committing Type II error (False negative) is equal to the beta (β).
 
 
-    - ***Degree of freedom***: Degrees of Freedom refers to the maximum number of logically independent values, which are values that have the freedom to vary, in the data sample. 
+    ![image32]
 
-        Example: dataset with 10 values
+- ***One-sided test***: Used when the null doesn’t contain equality or inequality sign. It contains:
+    - ```<``` 
+    - ```>```
+    - ```≤```
+    - ```≥```
 
-        - no calculation: 10 degrees of freedom (each datapoint is free to choose)
-        - with an estimation (e.g. mean) - one constraint -> sum_total = 10 x mean 
     
-- ***Hypothesis testing types***
-    - T Test ( Student T test)
-    - Z Test
-    - ANOVA Test
-    - Chi-Square Test
 
-    ![image28]
+- ***Two-sided test***: Used when the null contains an 
+    - equality ```=```
+    - or an inequality sign ```≠```
+    
+
+- ***Degree of freedom***: Degrees of Freedom refers to the maximum number of logically independent values, which are values that have the freedom to vary, in the data sample. 
+
+    Example: dataset with 10 values
+
+    - no calculation: 10 degrees of freedom (each datapoint is free to choose)
+    - with an estimation (e.g. mean) - one constraint -> sum_total = 10 x mean 
+    
+## Simulating a sampling distribution from the Null Hypothesis
+- In the sectionon confidence intervals, we saw how we could simulate a sampling distribution for a statistic by bootstrapping the sample data. Alternatively, in hypothesis testing, we could simulate a sampling distribution from the null hypothesis using characteristics that would be true if our data were to have come from the null.
+
+- Open notebook under ```notebooks/Simulating From the Null.ipynb.ipynb```
+    ```
+    import pandas as pd
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    %matplotlib inline
+    np.random.seed(42)
+
+    full_data = pd.read_csv('coffee_dataset.csv')
+    sample_data = full_data.sample(200)
+
+    nocoff_means, coff_means, diffs = [], [], []
+
+    for _ in range(10000):
+        bootsamp = sample_data.sample(200, replace = True)
+        coff_mean = bootsamp[bootsamp['drinks_coffee'] == True]['height'].mean()
+        nocoff_mean = bootsamp[bootsamp['drinks_coffee'] == False]['height'].mean()
+        # append the info 
+        coff_means.append(coff_mean)
+        nocoff_means.append(nocoff_mean)
+        diffs.append(coff_mean - nocoff_mean)   
+
+    np.std(nocoff_means) # the standard deviation of the sampling distribution for nocoff
+
+    np.std(coff_means) # the standard deviation of the sampling distribution for coff
+
+    np.std(diffs) # the standard deviation for the sampling distribution for difference in means
+
+    plt.hist(nocoff_means, alpha = 0.5);
+    plt.hist(coff_means, alpha = 0.5); # They look pretty normal to me!
+    plt.hist(diffs, alpha = 0.5); # again normal - this is by the central limit theorem
+
+    # Simulate a sampling distribution from the null hypothesis
+    null_vals = np.random.normal(0, np.std(diffs), 10000) # Here are 10000 draws from the sampling distribution under the null
+    ```
+# P-value 
+- p-value is the conditional probability of observing your statistic if the null hypothesis is true. P(statistic | H0 = True)
+- The p-value is the smallest level of significance at which we can still reject the null hypothesis, given the observed sample statistic-
+- If p-value is less than the chosen significance level then you reject the null hypothesis i.e. you accept  alternative hypothesis.
+- Here is a link to a [p_value claculator](#https://www.socscistatistics.com/pvalues/)
+
+    ![image27]
+
+- Open notebook under ```notebooks/Simulating From the Null.ipynb.ipynb``` (see the code above and add the following lines)
+
+    ```
+    null_vals = np.random.normal(70, np.std(coff_means), 10000)
+    plt.hist(null_vals); #Here is the sampling distribution of coff_means
+    sample_mean = sample_data.height.mean()
+
+    # p-value calculation
+    (null_vals > sample_mean).mean()
+    # Result: accept the Null
+
+    # p-value calculation
+    (null_vals < sample_mean).mean()
+    # Result: reject the Null
+
+    null_mean = 70
+    (null_vals < sample_mean).mean() + (null_vals > null_mean + (null_mean - sample_mean)).mean()
+    # Result: reject the Null
+    ```
+
+# Conclusions in Hypothesis Testing
+- The word ***accept*** is one that is avoided when making statements regarding the null and alternative. You are not stating that one of the hypotheses is true. Rather, you are making a decision based on the likelihood of your data coming from the null hypothesis with regard to your type I error threshold.
+
+- Therefore, the wording used in conclusions of hypothesis testing includes: We reject the null hypothesis or We fail to reject the null hypothesis. This lends itself to the idea that you start with the null hypothesis true by default, and "choosing" the null at the end of the test would have been the choice even if no data were collected.
+
+
+    ![image35]
+
+
+## Hypothesis testing types
+- T Test ( Student T test)
+- Z Test
+- ANOVA Test
+- Chi-Square Test
+
+![image28]
 
 - ***Python SciPy to test for Hypothesis Testing***
     - SciPy [ttest_1samp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_1samp.html)

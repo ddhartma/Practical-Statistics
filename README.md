@@ -5,6 +5,12 @@
 [image5]: assets/bayes.png "image5"
 [image6]: assets/not_1.png "image6"
 [image7]: assets/not_2.png "image7"
+[image8]: assets/sampling_dis.png "image8"
+[image9]: assets/sampling_dis_2.png "image9"
+[image10]: assets/bootstrap.png "image10"
+[image11]: assets/confidence.png "image11"
+[image12]: assets/confidence_1.png "image11"
+[image13]: assets/confidence_2.png "image11"
 [image16]: assets/norm.png "image16"
 [image17]: assets/norm_eq.png "image17"
 [image18]: assets/std_norm_eq.png "image18"
@@ -327,8 +333,18 @@ where ***n*** is the number of events, ***x*** is the number of "successes", and
     plt.hist(np.random.binomial(100, 0.5, 1000000));
     ```
 
-# Sampling Distribution
+# [Sampling Distribution](https://www.slideshare.net/DonnaWiles1/sampling-distribution-84492010)
 A sampling distribution is the distribution of a statistic.
+
+![image8] ![image9]
+
+Images are only valid in combination with Central Limit Theorem
+
+Remember:
+- The ***population distribution*** shows the values of the variable for all individuals in the population
+- The ***distribution of sample data*** shows the values of the variable for all the individuals in the sample
+- The ***sampling distribution*** shows the statistic values from all the possible samples of the same size from the population
+
 - Open notebook under ```notebooks/Sampling Distributions-Solution.ipynb```
 
     ```
@@ -341,6 +357,7 @@ A sampling distribution is the distribution of a statistic.
     sample_props = np.array(sample_props)
     sample_props.mean()
     ```
+    
 
 # Law of Large Numbers
 The larger the sample size -> The closer the statistic gets to the parameter
@@ -356,6 +373,88 @@ The Central Limit Theorem actually applies for these well known statistics:
 - Difference in sample means Sample means <img src="https://render.githubusercontent.com/render/math?math=\bar{x}_{1} - \bar{x}_{2}" height="25px">
 - Difference in sample proportions Difference in sample means Sample means <img src="https://render.githubusercontent.com/render/math?math=p_{1} - p_{2}" height="20px">
 
+- Open notebook under ```notebooks/Sampling Distributions ... Central Limit Theorem.ipynb```
+
+    ```
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    %matplotlib inline
+    np.random.seed(42)
+
+    pop_data = np.random.gamma(1,100,3000)
+    plt.hist(pop_data);
+
+    means_size_100 = []
+    for _ in range(10000):
+        sample = np.random.choice(pop_data, 100)
+        means_size_100.append(sample.mean())
+        
+    plt.hist(means_size_100);
+    ```
+
+# [Bootstrpping](https://towardsdatascience.com/bootstrapping-statistics-what-it-is-and-why-its-used-e2fa29577307)
+- Bootstrapping is random sampling with replacement. 
+- Bootstrapping is a statistical procedure that resamples a single dataset to create many simulated samples. 
+- This process allows for the calculation of standard errors, confidence intervals, and hypothesis testing
+
+How does it work?
+- A sample of size n is drawn from the population
+- Let us call this sample ***S***. 
+- The sampling distribution is created by resampling observations with replacement from S, ***m times***, with each resampled set having ***n observations***. 
+- Now, S should be representative of the population. 
+- Therefore, by resampling S m times with replacement, it would be as if m samples were drawn from the original population, and the estimates derived would be representative of the theoretical distribution under the traditional approach. It must be noted that increasing the number of resamples, m, will not increase the amount of information in the data. 
+    
+    ![image10]
+
+- Open notebook under ```notebooks/Building Confidence Intervals.ipynb.ipynb```
+    ```
+    import numpy as np
+    import matplotlib.pyplot as plt
+    %matplotlib inline
+
+    np.random.seed(42)
+
+    coffee_full = pd.read_csv('../data/coffee_dataset.csv')
+    coffee_red = coffee_full.sample(200) #this is the only data you might actually get in the real world.
+
+    # Simulate 200 "new" individuals from your original sample of 200
+    bootsamp = coffee_red.sample(200, replace = True)
+
+    # What are the proportion of coffee drinkers in your bootstrap sample? 
+    bootsamp['drinks_coffee'].mean() # Drink Coffee and 1 minus gives those who don't
+    ```
+
+    ```
+    # Simulate a bootstrap sample 10,000 times
+    # take the mean height of the non-coffee drinkers in each sample
+    boot_means = []
+    for _ in range(10000):
+        bootsamp = coffee_red.sample(200, replace = True)
+        boot_mean = bootsamp[bootsamp['drinks_coffee'] == False]['height'].mean()
+        boot_means.append(boot_mean)
+        
+    plt.hist(boot_means); # Looks pretty normal
+    ```
+
+- Using ***random.choice*** in python actually samples in this way. Where the probability of any number in our set stays the same regardless of how many times it has been chosen. Flipping a coin and rolling a die are kind of like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later. 
+
+# Confidence intervals
+- We can use bootstrapping and sampling distributions to build confidence intervals for our parameters of interest.
+
+    ![image11]
+
+    ![image12]
+
+    ![image13]
+
+- Open notebook under ```notebooks/Building Confidence Intervals.ipynb```
+
+    ```
+    np.percentile(boot_means, 2.5), np.percentile(boot_means, 97.5)
+    ```
+- Check the code under Bootsrapping section (the confidence code line will follow on that code)
+
 # [Inference Statistics in Python](https://towardsdatascience.com/hypothesis-testing-in-machine-learning-using-python-a0dc89e169ce) <a name="infer"></a>
 - ***What is hypothesis testing?***
 
@@ -369,7 +468,6 @@ The Central Limit Theorem actually applies for these well known statistics:
     ![image16]
 
 
-    
 - ***Normal Distribution***
     1. mean = median = mode
     2. Transformation:
@@ -833,6 +931,8 @@ def main():
 ## Links
 * [Correlation does not imply causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation)
 * [17 Statistical Hypothesis Tests in Python ](https://machinelearningmastery.com/statistical-hypothesis-tests-in-python-cheat-sheet/)
+* [What is Sampling Distribution](https://www.slideshare.net/DonnaWiles1/sampling-distribution-84492010)
+* [Bootstrapping Statistics. What it is and why it’s used.](https://towardsdatascience.com/bootstrapping-statistics-what-it-is-and-why-its-used-e2fa29577307)
 
 Git/Github
 * [GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html)

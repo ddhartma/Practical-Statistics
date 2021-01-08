@@ -32,6 +32,8 @@
 [image33]: assets/p_value_1.png "image33"
 [image34]: assets/p_value_2.png "image34"
 [image35]: assets/hypo_conclusion.png "image35"
+[image36]: assets/large_sample_size.png "image36"
+[image37]: assets/confidence_hypo.png "image37"
 
 # Practical Statistics 
 
@@ -668,7 +670,7 @@ How does it work?
     # Simulate a sampling distribution from the null hypothesis
     null_vals = np.random.normal(0, np.std(diffs), 10000) # Here are 10000 draws from the sampling distribution under the null
     ```
-# P-value 
+## P-value 
 - p-value is the conditional probability of observing your statistic if the null hypothesis is true. P(statistic | H0 = True)
 - The p-value is the smallest level of significance at which we can still reject the null hypothesis, given the observed sample statistic-
 - If p-value is less than the chosen significance level then you reject the null hypothesis i.e. you accept  alternative hypothesis.
@@ -696,7 +698,7 @@ How does it work?
     # Result: reject the Null
     ```
 
-# Conclusions in Hypothesis Testing
+## Conclusions in Hypothesis Testing - Calculating errors
 - The word ***accept*** is one that is avoided when making statements regarding the null and alternative. You are not stating that one of the hypotheses is true. Rather, you are making a decision based on the likelihood of your data coming from the null hypothesis with regard to your type I error threshold.
 
 - Therefore, the wording used in conclusions of hypothesis testing includes: We reject the null hypothesis or We fail to reject the null hypothesis. This lends itself to the idea that you start with the null hypothesis true by default, and "choosing" the null at the end of the test would have been the choice even if no data were collected.
@@ -704,6 +706,52 @@ How does it work?
 
     ![image35]
 
+- Open notebook under ```notebooks/Drawing Conclusions.ipynb```
+
+    ```
+    import numpy as np
+    import pandas as pd
+
+    jud_data = pd.read_csv('judicial_dataset_predictions.csv')
+    par_data = pd.read_csv('parachute_dataset.csv')
+
+    jud_data[jud_data['actual'] != jud_data['predicted']].shape[0]/jud_data.shape[0] # Number of errors
+    jud_data.query("actual == 'innocent' and predicted == 'guilty'").count()[0]/jud_data.shape[0] # Type 1 errors
+    jud_data.query("actual == 'guilty' and predicted == 'innocent'").count()[0]/jud_data.shape[0] # Type 2 errors
+
+    # If everyone was predicted to be guilty, then every actual innocent 
+    # person would be a type I error.
+    # Type I = pred guilty, but actual = innocent
+    jud_data[jud_data['actual'] == 'innocent'].shape[0]/jud_data.shape[0]
+
+    #If everyone has prediction of guilty, then no one is predicted inncoent
+    #Therefore, there would be no type 2 errors in this case
+    # Type II errs = pred innocent, but actual = guilty
+    0
+    ```
+
+
+
+## Impact of Large Sample Size
+- With large sample sizes, hypothesis testing leads to even the smallest of findings as statistically significant. However, these findings might not be practically significant at all. 
+- Alternatively, machine learning techniques take an individual approach towards making conclusions, as they attempt to predict an outcome for each specific data point. 
+
+    ![image36]
+
+- Open notebook under ```notebooks/What is the impact of sample size.ipynb```
+
+## How do Confidence Intervals and Hypothesis Testing compare?
+- A two-sided hypothesis test (that is a test involving a ≠ in the alternative) is the same in terms of the conclusions made as a confidence interval as long as:
+
+    1 − CI = α 
+
+- For example, a 95% confidence interval will draw the same conclusions as a hypothesis test with a type I error rate of 0.05 in terms of which hypothesis to choose, because:
+
+    1 − 0.95 = 0.05
+
+    assuming that the alternative hypothesis is a two sided test.
+
+    ![image37]
 
 ## Hypothesis testing types
 - T Test ( Student T test)
@@ -711,7 +759,7 @@ How does it work?
 - ANOVA Test
 - Chi-Square Test
 
-![image28]
+    ![image28]
 
 - ***Python SciPy to test for Hypothesis Testing***
     - SciPy [ttest_1samp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_1samp.html)

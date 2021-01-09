@@ -34,6 +34,7 @@
 [image35]: assets/hypo_conclusion.png "image35"
 [image36]: assets/large_sample_size.png "image36"
 [image37]: assets/confidence_hypo.png "image37"
+[image38]: assets/hypo_summary.png "image37"
 
 # Practical Statistics 
 
@@ -49,8 +50,8 @@
 - [Further Links](#Further_Links)
 
 # Descriptive vs Inferential Statistics  <a name="descr_infer"></a>
-- Descriptive statistics is about describing collected data
-- Inferential Statistics is about using collected data to draw conclusions to a larger population
+- ***Descriptive statistics*** is about describing collected data
+- ***Inferential Statistics*** is about using collected data to draw conclusions to a larger population
 
 
     - ***Population*** - entire group of interest
@@ -313,7 +314,7 @@ Posterior probability
 
 ![image4]
 
-where ***n*** is the number of events, ***x*** is the number of "successes", and ***p*** is the probability of "success".
+where ***n*** is the number of events, ***k*** is the number of "successes", and ***p*** is the probability of "success".
 
 
 ## Simulating many Coins Flips in Python 
@@ -341,6 +342,7 @@ where ***n*** is the number of events, ***x*** is the number of "successes", and
     # gets more narrow as number of flips increase per test
     plt.hist(np.random.binomial(100, 0.5, 1000000));
     ```
+# Interference Statistics <a name="infer"></a>
 
 # [Sampling Distribution](https://www.slideshare.net/DonnaWiles1/sampling-distribution-84492010)
 A sampling distribution is the distribution of a statistic.
@@ -378,9 +380,9 @@ The Central Limit Theorem states that with a large enough sample size the sampli
 The Central Limit Theorem actually applies for these well known statistics:
 
 - Sample means <img src="https://render.githubusercontent.com/render/math?math=\bar{x}" height="20px">
-- Sample proportions Sample means <img src="https://render.githubusercontent.com/render/math?math=p" height="20px">
-- Difference in sample means Sample means <img src="https://render.githubusercontent.com/render/math?math=\bar{x}_{1} - \bar{x}_{2}" height="25px">
-- Difference in sample proportions Difference in sample means Sample means <img src="https://render.githubusercontent.com/render/math?math=p_{1} - p_{2}" height="20px">
+- Sample proportions <img src="https://render.githubusercontent.com/render/math?math=p" height="20px">
+- Difference in sample means <img src="https://render.githubusercontent.com/render/math?math=\bar{x}_{1} - \bar{x}_{2}" height="25px">
+- Difference in sample proportions <img src="https://render.githubusercontent.com/render/math?math=p_{1} - p_{2}" height="20px">
 
 - Open notebook under ```notebooks/Sampling Distributions ... Central Limit Theorem.ipynb```
 
@@ -402,7 +404,7 @@ The Central Limit Theorem actually applies for these well known statistics:
     plt.hist(means_size_100);
     ```
 
-# [Bootstrpping](https://towardsdatascience.com/bootstrapping-statistics-what-it-is-and-why-its-used-e2fa29577307)
+# [Bootstrapping](https://towardsdatascience.com/bootstrapping-statistics-what-it-is-and-why-its-used-e2fa29577307)
 - Bootstrapping is random sampling with replacement. 
 - Bootstrapping is a statistical procedure that resamples a single dataset to create many simulated samples. 
 - This process allows for the calculation of standard errors, confidence intervals, and hypothesis testing
@@ -410,8 +412,8 @@ The Central Limit Theorem actually applies for these well known statistics:
 How does it work?
 - A sample of size n is drawn from the population
 - Let us call this sample ***S***. 
+- S should be representative of the population. 
 - The sampling distribution is created by resampling observations with replacement from S, ***m times***, with each resampled set having ***n observations***. 
-- Now, S should be representative of the population. 
 - Therefore, by resampling S m times with replacement, it would be as if m samples were drawn from the original population, and the estimates derived would be representative of the theoretical distribution under the traditional approach. It must be noted that increasing the number of resamples, m, will not increase the amount of information in the data. 
     
     ![image10]
@@ -530,7 +532,7 @@ How does it work?
 - If you truly believe that your data is representative of the population dataset, the bootstrapping method should provide better confidence intervall results
 - However: With large enough sample sizes Bootstrapping and Traditional Methods will provide essentially the same result.
 
-# [Inference Statistics: Hypotheis testing](https://towardsdatascience.com/hypothesis-testing-in-machine-learning-using-python-a0dc89e169ce) <a name="infer"></a>
+# [Hypothesis testing](https://towardsdatascience.com/hypothesis-testing-in-machine-learning-using-python-a0dc89e169ce)
 ## What is hypothesis testing?
 
 - A hypothesis is “an idea that can be tested”. Hypothesis testing is a statistical method used for making decisions based on experimental data. It's basically an assumption that we make about the population parameter.
@@ -540,7 +542,7 @@ How does it work?
 
 ## What are the basics of hypothesis testing?
 
-- The basic of hypothesis is [normalisation](https://en.wikipedia.org/wiki/Normalization_(statistics)) and [standard normalisation](https://stats.stackexchange.com/questions/10289/whats-the-difference-between-normalization-and-standardization). All hypothesis is based on these 2 terms.
+- The basic of hypothesis is [normalisation](https://en.wikipedia.org/wiki/Normalization_(statistics)) and [standard normalisation](https://stats.stackexchange.com/questions/10289/whats-the-difference-between-normalization-and-standardization). All hypothesis tests are based on these 2 terms.
 
     ![image16]
 
@@ -574,28 +576,6 @@ How does it work?
 
 
     - <img src="https://render.githubusercontent.com/render/math?math=H_{1}: \mu_{1} \neq \mu_{2}" width="200px">
-
-
-- ***Decisions you can take***:
-    - ***accept*** the null hypothesis. To accept the null means that there isn’t enough data to support the change or the innovation brought by the alternative.
-    - ***reject*** the null hypothesis. To reject the null means that there is enough statistical evidence that the status-quo is not representative of the truth.
-
-    ![image29]
-
-
-    Different ways of reporting the result:
-
-    ***Accept***:
-    - At x% significance, we accept the null hypothesis
-    - At x% significance, A is not significantly different from B
-    - At x% significance, there is not enough statistical evidence that…
-    - At x% significance, we cannot reject the null hypothesis
-
-    ***Reject***:
-    - At x% significance, we reject the null hypothesis
-    - At x% significance, A is significantly different from B
-    - At x% significance, there is enough statistical evidence…
-    - At x% significance, we cannot say that *restate the null*
 
 - ***Level of significance***: The probability of rejecting a null hypothesis that is true; the probability of making this error.
 
@@ -634,7 +614,7 @@ How does it work?
 ## Simulating a sampling distribution from the Null Hypothesis
 - In the sectionon confidence intervals, we saw how we could simulate a sampling distribution for a statistic by bootstrapping the sample data. Alternatively, in hypothesis testing, we could simulate a sampling distribution from the null hypothesis using characteristics that would be true if our data were to have come from the null.
 
-- Open notebook under ```notebooks/Simulating From the Null.ipynb.ipynb```
+- Open notebook under ```notebooks/Simulating From the Null.ipynb```
     ```
     import pandas as pd
     import numpy as np
@@ -672,13 +652,13 @@ How does it work?
     ```
 ## P-value 
 - p-value is the conditional probability of observing your statistic if the null hypothesis is true. P(statistic | H0 = True)
-- The p-value is the smallest level of significance at which we can still reject the null hypothesis, given the observed sample statistic-
+- The p-value is the smallest level of significance at which we can still reject the null hypothesis
 - If p-value is less than the chosen significance level then you reject the null hypothesis i.e. you accept  alternative hypothesis.
-- Here is a link to a [p_value claculator](#https://www.socscistatistics.com/pvalues/)
+- Here is a link to a [p_value claculator](https://www.socscistatistics.com/pvalues/)
 
     ![image27]
 
-- Open notebook under ```notebooks/Simulating From the Null.ipynb.ipynb``` (see the code above and add the following lines)
+- Open notebook under ```notebooks/Simulating From the Null.ipynb``` (see the code above and add the following lines)
 
     ```
     null_vals = np.random.normal(70, np.std(coff_means), 10000)
@@ -705,6 +685,8 @@ How does it work?
 
 
     ![image35]
+
+     ![image29]
 
 - Open notebook under ```notebooks/Drawing Conclusions.ipynb```
 
@@ -753,6 +735,15 @@ How does it work?
 
     ![image37]
 
+## Multiple Tests
+- When performing multiple hypothesis tests, your errors will compound. Therefore, using some sort of correction to maintain your true Type I error rate is important. A simple, but very conservative approach is to use what is known as a ***Bonferroni correction***, which says you should just divide your α level (or Type I error threshold) by the number of tests performed.
+
+- Open notebook under ```notebooks/Multiple Testing.ipynb```
+
+## Summary
+- Short overview of important (practical) terms in ference statistics
+
+    ![image38]
 
 
 ## Hypothesis testing types

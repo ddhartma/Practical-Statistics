@@ -753,6 +753,8 @@ How does it work?
 
     ![image37]
 
+
+
 ## Hypothesis testing types
 - T Test ( Student T test)
 - Z Test

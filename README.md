@@ -41,11 +41,50 @@
 ## Outline
 - [Descriptive vs Inferential Statistics](#descr_infer)
 - [Descriptive Statistics](#dscr)
+    - [What is data?](#What_is_data)
+    - [Data types](#Data_types)
+    - [Analyzing Quantitative Data](#Analyzing_Quantitative_Data)
+    - [Analyzing Categorical data](#Analyzing_Categorical_data)
+    - [Measures of Center](#measure_of_center)
+    - [Notation](#Notation)
+    - [Measurs of Spread](#Measurs_of_Spread)
+    - [Shape](#Shape)
+    - [Outliers](#Outliers)
+    
+
 - [Probability](#Probability)
+    - [Conditional Probability](#Conditional_Probability)
+    - [Bayes Rule](#Bayes_Rule)
+    - [Simulating Coins Flips in Python](#Simulating_Coins_Flips)
+    - [Binominal Distribution <a name="binom_dis"></a>](#binom_dis)
+    - [Simulating many Coins Flips in Python](#Simulating_many_Coins_Flips)
+    
 - [Inferential Statistics](#infer)
+    - [Sampling Distribution](#sampling_dis)
+    - [Law of Large Numbers](#law_large)
+    - [Central Limit Theorem](#central_lim)
+    - [Bootstrapping](#Bootstrapping)
+    - [Confidence intervals](#Confidence_intervals)
+    - [Confidence Intervals (& Hypothesis Testing) vs. Machine Learning](#Confidence_Intervals_vs_ML)
+    - [Practical and Statistical Significance](#prac_sig)
+    - [Bootstrapping + Sampling Distributions or Hypothesis Testing?](#boot_or_hypo)
 
-
+    - [Hypothesis testing](#hypo_test)
+    - [What is hypothesis testing?](#What_is_hypothesis_testing)
+    - [What are the basics of hypothesis testing?](#basics_hypo)
+    - [What are important parameters of hypothesis testing?](#para_hypo)
+    - [Simulating a sampling distribution from the Null Hypothesis](#sim_sample_dis)
+    - [P-value](#p_value)
+    - [Conclusions in Hypothesis Testing - Calculating errors](#concl_hypo)
+    - [Impact of Large Sample Size](#imp_large_sample)
+    - [How do Confidence Intervals and Hypothesis Testing compare?](#compete_conf_int_hypo)
+    - [Multiple Tests](#multi_tests)
+    - [Summary](#sum)
+    - [Hypothesis testing types](#hypo_test_types)
+    
 - [Setup Instructions](#Setup_Instructions)
+    - [Prerequisites: Installation of Python via Anaconda and Command Line Interaface](#Prerequisites)
+    - [Clone the project](#Clone_the_project)
 - [Acknowledgments](#Acknowledgments)
 - [Further Links](#Further_Links)
 
@@ -62,12 +101,12 @@
     ![image6]
 
 # Descriptive Statistics <a name="dscr"></a>
-## What is data?
+## What is data? <a name="What_is_data"></a>
 - Data can come in sin many forms: 
     - structured data (numerical data, relational databases)
     - unstructured data (images, audio, video)
 
-## Data types
+## Data types <a name="Data_types"></a>
 - ***Quantitative***: numeric values 
     - ***discrete***: Pages in a Book, Trees in Yard, Dogs at a Coffee Shop
     - ***continuous***: Height, Age, Income
@@ -75,17 +114,17 @@
     - ***ordinal***: Letter Grade, Survey Rating
     - ***nominal***: Gender, Marital Status, Breakfast Items
 
-## Analyzing Quantitative Data
+## Analyzing Quantitative Data <a name="Analyzing_Quantitative_Data"></a>
 Four Aspects for Quantitative Data
 - Measures of Center
 - Measures of Spread
 - The Shape of the data
 - Outliers
 
-## Analyzing Categorical data
+## Analyzing Categorical data <a name="Analyzing_Categorical_data"></a>
 by looking at the counts or proportion of individuals that fall into each group.
 
-## Measures of Center
+## Measures of Center <a name="measure_of_center"></a>
 - ***Mean*** - average or the expected value
 
     <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{n} \sum_{i=1}^{n}  x_{i}" width="120px">
@@ -109,7 +148,7 @@ Remember:
 - In order to compute the median we MUST sort our values first
 - If two (or more) numbers share the maximum value, then there is more than one mode
 
-## Notation
+## Notation <a name="Notation"></a>
 - universal language used by academic and industry professionals to convey mathematical ideas
 - e.g. plus, minus, multiply, division, and equal signs
 - ***Random variables*** are represented by capital letters, e.g. X, Y, Z
@@ -117,7 +156,7 @@ Remember:
 - P(X > 20) = x
 - Aggregations: for sum sign, product sign, integration, etc.
 
-## Measurs of Spread
+## Measurs of Spread <a name="Measurs_of_Spread"></a>
 - Use histograms for visualization data in certain bins (e.g. 1-4, 5-8, 9-12, 13-16)
 - Use boxplot for analyse median and quartiles, maximum, minimum, IQR
 1. Use the ***5 number summary***
@@ -162,7 +201,7 @@ Remember:
     # calculate standard deviation
     df.std(axis=None, skipna=None, level=None, ddof=1, numeric_only=None, **kwargs)
     ```
-## Shape
+## Shape <a name="Shape"></a>
 ![image2]
 
 | Shape     | Mean vs. Median     | Real World Applications
@@ -176,7 +215,7 @@ Remember:
 df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
 ```
 
-## Outliers
+## Outliers <a name="Outliers"></a>
 - Use e.g. histograms to detect outliers
 - Use the Tukey rule
 
@@ -232,7 +271,7 @@ A probability summary:
 - 1-P = probability of the opposite event
 - P*P*P*P*P*... = Probaility of composite (independent) event
 
-## Conditional Probability
+## Conditional Probability <a name="Probability"></a>
 We can formulate conditional probabilities for any two events in the following way:
 
 The likelihood of event A occurring given that B is true:
@@ -241,7 +280,7 @@ The likelihood of event A occurring given that B is true:
 
 - <img src="https://render.githubusercontent.com/render/math?math=P(A) = P(A|B)P(B) %2B P(A|\bar{B})P(\bar{B})" height="40px">
 
-## Bayes Rule
+## Bayes Rule <a name="Bayes_Rule"></a>
 
 - <img src="https://render.githubusercontent.com/render/math?math=P(A | B) = \frac{P(B | A) \cdot P(A)}{P(B)}" height="60px">
 
@@ -277,7 +316,7 @@ Posterior probability
 ![image5]
 
 
-## Simulating Coins Flips in Python 
+## Simulating Coins Flips in Python <a name="Simulating_Coins_Flips"></a>
 - Open notebook under ```notebooks/simulating_coin_flips.ipynb```
     ```
     import numpy as np
@@ -309,15 +348,14 @@ Posterior probability
     np.random.choice([0, 1], size=10000, p=[0.8, 0.2]).mean()
     ```
 
-
-# Binominal Distribution <a name="binom_dis"></a>
+## Binominal Distribution <a name="binom_dis"></a>
 
 ![image4]
 
 where ***n*** is the number of events, ***k*** is the number of "successes", and ***p*** is the probability of "success".
 
 
-## Simulating many Coins Flips in Python 
+## Simulating many Coins Flips in Python <a name="Simulating_many_Coins_Flips"></a>
 - Open notebook under ```notebooks/simulating_many_coin_flips.ipynb```
     ```
     import numpy as np
@@ -344,7 +382,7 @@ where ***n*** is the number of events, ***k*** is the number of "successes", and
     ```
 # Interference Statistics <a name="infer"></a>
 
-# [Sampling Distribution](https://www.slideshare.net/DonnaWiles1/sampling-distribution-84492010)
+## [Sampling Distribution](https://www.slideshare.net/DonnaWiles1/sampling-distribution-84492010) <a name="sampling_dis"></a>
 A sampling distribution is the distribution of a statistic.
 
 ![image8] ![image9]
@@ -370,11 +408,11 @@ Remember:
     ```
     
 
-# Law of Large Numbers
+## Law of Large Numbers <a name="law_large"></a>
 The larger the sample size -> The closer the statistic gets to the parameter
 
 
-# Central Limit Theorem
+## Central Limit Theorem <a name="central_lim"></a>
 The Central Limit Theorem states that with a large enough sample size the sampling distribution of the mean will be normally distributed.
 
 The Central Limit Theorem actually applies for these well known statistics:
@@ -404,7 +442,7 @@ The Central Limit Theorem actually applies for these well known statistics:
     plt.hist(means_size_100);
     ```
 
-# [Bootstrapping](https://towardsdatascience.com/bootstrapping-statistics-what-it-is-and-why-its-used-e2fa29577307)
+## [Bootstrapping](https://towardsdatascience.com/bootstrapping-statistics-what-it-is-and-why-its-used-e2fa29577307) <a name="Bootstrapping"></a>
 - Bootstrapping is random sampling with replacement. 
 - Bootstrapping is a statistical procedure that resamples a single dataset to create many simulated samples. 
 - This process allows for the calculation of standard errors, confidence intervals, and hypothesis testing
@@ -450,7 +488,7 @@ How does it work?
 
 - Using ***random.choice*** in python actually samples in this way. Where the probability of any number in our set stays the same regardless of how many times it has been chosen. Flipping a coin and rolling a die are kind of like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later. 
 
-# Confidence intervals
+## Confidence intervals <a name="Confidence_intervals"></a>
 - We can use bootstrapping and sampling distributions to build confidence intervals for our parameters of interest.
 
     ![image11]
@@ -517,30 +555,31 @@ How does it work?
 - ***Confidence interval width*** is the difference between your upper and lower bounds of your confidence interval
 - ***Margin of error***: is half the confidence interval width, and the value that you add and subtract from your sample estimate to achieve your confidence interval final results.
 
-# Confidence Intervals (& Hypothesis Testing) vs. Machine Learning
+## Confidence Intervals (& Hypothesis Testing) vs. Machine Learning <a name="Confidence_Intervals_vs_ML"></a>
 - Confidence intervals take an aggregate approach towards the conclusions made based on data, as these tests are aimed at understanding population parameters (which are aggregate population values).
 
 - Alternatively, machine learning techniques take an individual approach towards making conclusions, as they attempt to predict an outcome for each specific data point. 
 
-# Practical and Statistical Significance
+## Practical and Statistical Significance <a name="prac_sig"></a>
 - Using confidence intervals and hypothesis testing, you are able to provide statistical significance in making decisions.
 - However, it is also important to take into consideration practical significance in making decisions. Practical significance takes into consideration other factors of your situation that might not be considered directly in the results of your hypothesis test or confidence interval. Constraints like space, time, or money are important in business decisions. However, they might not be accounted for directly in a statistical test.
 
-# Bootstrapping + Sampling Distributions or Hypothesis Testing?
+## Bootstrapping + Sampling Distributions or Hypothesis Testing? <a name="boot_or_hypo"></a>
 - Bootstrpping + Sampling Distributions is a powerful method for builing confidence intervals for essentially any parameters we might be interested in.
 - Bootstrapping can replace t-test, two-sample t-test, paired t-test, z-test, chi-squared test, f-test
 - If you truly believe that your data is representative of the population dataset, the bootstrapping method should provide better confidence intervall results
 - However: With large enough sample sizes Bootstrapping and Traditional Methods will provide essentially the same result.
 
-# [Hypothesis testing](https://towardsdatascience.com/hypothesis-testing-in-machine-learning-using-python-a0dc89e169ce)
-## What is hypothesis testing?
+## [Hypothesis testing](https://towardsdatascience.com/hypothesis-testing-in-machine-learning-using-python-a0dc89e169ce) <a name="hypo_test"></a>
+
+## What is hypothesis testing? <a name="What_is_hypothesis_testing"></a>
 
 - A hypothesis is “an idea that can be tested”. Hypothesis testing is a statistical method used for making decisions based on experimental data. It's basically an assumption that we make about the population parameter.
 - Hypothesis Testing and Confidence Intervals allow us to use only sample data to draw conclusions about an entire population
 
 
 
-## What are the basics of hypothesis testing?
+## What are the basics of hypothesis testing? <a name="basics_hypo"></a>
 
 - The basic of hypothesis is [normalisation](https://en.wikipedia.org/wiki/Normalization_(statistics)) and [standard normalisation](https://stats.stackexchange.com/questions/10289/whats-the-difference-between-normalization-and-standardization). All hypothesis tests are based on these 2 terms.
 
@@ -560,7 +599,7 @@ How does it work?
 
         <img src="https://render.githubusercontent.com/render/math?math=X_{new}=\frac{x - \mu}{\sigma}" width="200px">
 
-## What are important parameters of hypothesis testing?
+## What are important parameters of hypothesis testing? <a name="para_hypo"></a>
 
 - ***Null hypothesis vs. Alternate hypotheis***: 
 
@@ -611,7 +650,7 @@ How does it work?
     - no calculation: 10 degrees of freedom (each datapoint is free to choose)
     - with an estimation (e.g. mean) - one constraint -> sum_total = 10 x mean 
     
-## Simulating a sampling distribution from the Null Hypothesis
+## Simulating a sampling distribution from the Null Hypothesis <a name="sim_sample_dis"></a>
 - In the sectionon confidence intervals, we saw how we could simulate a sampling distribution for a statistic by bootstrapping the sample data. Alternatively, in hypothesis testing, we could simulate a sampling distribution from the null hypothesis using characteristics that would be true if our data were to have come from the null.
 
 - Open notebook under ```notebooks/Simulating From the Null.ipynb```
@@ -650,7 +689,7 @@ How does it work?
     # Simulate a sampling distribution from the null hypothesis
     null_vals = np.random.normal(0, np.std(diffs), 10000) # Here are 10000 draws from the sampling distribution under the null
     ```
-## P-value 
+## P-value <a name="p_value"></a>
 - p-value is the conditional probability of observing your statistic if the null hypothesis is true. P(statistic | H0 = True)
 - The p-value is the smallest level of significance at which we can still reject the null hypothesis
 - If p-value is less than the chosen significance level then you reject the null hypothesis i.e. you accept  alternative hypothesis.
@@ -678,7 +717,7 @@ How does it work?
     # Result: reject the Null
     ```
 
-## Conclusions in Hypothesis Testing - Calculating errors
+## Conclusions in Hypothesis Testing - Calculating errors <a name="concl_hypo"></a>
 - The word ***accept*** is one that is avoided when making statements regarding the null and alternative. You are not stating that one of the hypotheses is true. Rather, you are making a decision based on the likelihood of your data coming from the null hypothesis with regard to your type I error threshold.
 
 - Therefore, the wording used in conclusions of hypothesis testing includes: We reject the null hypothesis or We fail to reject the null hypothesis. This lends itself to the idea that you start with the null hypothesis true by default, and "choosing" the null at the end of the test would have been the choice even if no data were collected.
@@ -712,9 +751,7 @@ How does it work?
     0
     ```
 
-
-
-## Impact of Large Sample Size
+## Impact of Large Sample Size <a name="imp_large_sample"></a>
 - With large sample sizes, hypothesis testing leads to even the smallest of findings as statistically significant. However, these findings might not be practically significant at all. 
 - Alternatively, machine learning techniques take an individual approach towards making conclusions, as they attempt to predict an outcome for each specific data point. 
 
@@ -722,7 +759,7 @@ How does it work?
 
 - Open notebook under ```notebooks/What is the impact of sample size.ipynb```
 
-## How do Confidence Intervals and Hypothesis Testing compare?
+## How do Confidence Intervals and Hypothesis Testing compare? <a name="compete_conf_int_hypo"></a>
 - A two-sided hypothesis test (that is a test involving a ≠ in the alternative) is the same in terms of the conclusions made as a confidence interval as long as:
 
     1 − CI = α 
@@ -735,18 +772,18 @@ How does it work?
 
     ![image37]
 
-## Multiple Tests
+## Multiple Tests <a name="multi_tests"></a>
 - When performing multiple hypothesis tests, your errors will compound. Therefore, using some sort of correction to maintain your true Type I error rate is important. A simple, but very conservative approach is to use what is known as a ***Bonferroni correction***, which says you should just divide your α level (or Type I error threshold) by the number of tests performed.
 
 - Open notebook under ```notebooks/Multiple Testing.ipynb```
 
-## Summary
+## Summary <a name="sum"></a>
 - Short overview of important (practical) terms in ference statistics
 
     ![image38]
 
 
-## Hypothesis testing types
+## Hypothesis testing types <a name="hypo_test_types"></a>
 - T Test ( Student T test)
 - Z Test
 - ANOVA Test
@@ -984,21 +1021,7 @@ How does it work?
     ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Setup Instructions <a name="Setup_Instructions"></a>
+# Setup Instructions <a name="Setup_Instructions"></a>
 The following is a brief set of instructions on setting up a cloned repository.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -1018,27 +1041,27 @@ $ conda upgrade --all
 $ export PATH="/path/to/anaconda/bin:$PATH"
 ```
 
-### Clone the project <a name="Clone_the_project"></a>
+## Clone the project <a name="Clone_the_project"></a>
 - Open your Command Line Interface
 - Change Directory to your project older, e.g. `cd my_github_projects`
 - Clone the Github Project inside this folder with Git Bash (Terminal) via:
 ```
-$ git clone https://github.com/ddhartma/Disaster-Response-Pipeline-Project.git
+$ git clone https://github.com/ddhartma/Practical-Statistics.git
 ```
 
 - Change Directory
 ```
-$ cd Disaster-Response-Pipeline-Project
+$ cd Practical-Statistics
 ```
 
-- Create a new Python environment, e.g. ds_ndp. Inside Git Bash (Terminal) write:
+- Create a new Python environment. Inside Git Bash (Terminal) write:
 ```
-$ conda create --name ds_ndp
+$ conda create --name <YOUR_ENV_NAME>
 ```
 
 - Activate the installed environment via
 ```
-$ conda activate ds_ndp
+$ conda activate <YOUR_ENV_NAME>
 ```
 
 - Install the following packages (via pip or conda)
@@ -1046,73 +1069,27 @@ $ conda activate ds_ndp
 numpy = 1.17.4
 pandas = 0.24.2
 scikit-learn = 0.20
-pipelinehelper = 0.7.8
 ```
 Example via pip:
 ```
 pip install numpy
 pip install pandas
 pip install scikit-learn==0.20
-pip install pipelinehelper
 ```
-scikit-learn==0.20 is needed for sklearns dictionary output (output_dict=True) for the classification_report. Earlier versions do not support this.
-
-
-Link1 to [pipelinehelper](https://github.com/bmurauer/pipelinehelper)
-
-Link2 to [pipelinehelper](https://stackoverflow.com/questions/23045318/scikit-grid-search-over-multiple-classifiers)
-
 - Check the environment installation via
 ```
 $ conda env list
 ```
 
-### Switch the pipelines
-- Active pipeline at the moment: pipeline_1 (Fast training/testing) pipeline
-- More sophisticated pipelines start with pipeline_2.
-- Model training has been done with ```pipeline_2```.
-- In order to switch between pipelines or to add more pipelines open train.classifier.py. Adjust the pipelines in `def main()` which should be tested (only one or more are possible) via the list ```pipeline_names```.
-
+- Activate the installed environment via
 ```
-def main():
-   ...
-
-    if len(sys.argv) == 3:
-        ...
-
-        # start pipelining, build the model
-        pipeline_names = ['pipeline_1', 'pipeline_2']
+conda activate <YOUR_ENV_NAME>
 ```
 
-
-### Run the web App
-
-1. Run the following commands in the project's root directory to set up your database and model.
-
-    To run ETL pipeline that cleans data and stores in database
-
-
-        python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
-
-    To run ML pipeline that trains classifier and saves
-
-        python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
-
-
-2. Run the following command in the app's directory to run your web app
-
-        python run.py
-
-
-
-
-3. Go to http://0.0.0.0:3001/
-
-## Acknowledgments <a name="Acknowledgments"></a>
+# Acknowledgments <a name="Acknowledgments"></a>
 * This project is part of the Udacity Nanodegree program 'Data Science'. Please check this [link](https://www.udacity.com) for more information.
 
-## Further Links <a name="Further_Links"></a>
-## Links
+# Further Links <a name="Further_Links"></a>
 * [Correlation does not imply causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation)
 * [17 Statistical Hypothesis Tests in Python ](https://machinelearningmastery.com/statistical-hypothesis-tests-in-python-cheat-sheet/)
 * [What is Sampling Distribution](https://www.slideshare.net/DonnaWiles1/sampling-distribution-84492010)

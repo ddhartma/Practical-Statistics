@@ -28,7 +28,7 @@
 [image29]: assets/critical_val.png "image29"
 [image30]: assets/type_1.png "image30"
 [image31]: assets/type_2.png "image31"
-[image32]: assets/types_of_error.png "image32"
+[image32]: assets/types_of_error_2.png "image32"
 [image33]: assets/p_value_1.png "image33"
 [image34]: assets/p_value_2.png "image34"
 [image35]: assets/hypo_conclusion.png "image35"

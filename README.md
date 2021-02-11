@@ -34,9 +34,14 @@
 [image35]: assets/hypo_conclusion.png "image35"
 [image36]: assets/large_sample_size.png "image36"
 [image37]: assets/confidence_hypo.png "image37"
-[image38]: assets/hypo_summary.png "image37"
+[image38]: assets/hypo_summary.png "image38"
+[image40]: assets/prec_rec_2.png "image40"
+[image41]: assets/prec_rec_3.png "image41"
+[image42]: assets/prec_rec_4.png "image42"
+[image43]: assets/prec_rec_5.png "image43"
+[image44]: assets/prec_rec_6.png "image44"
 
-# Practical Statistics 
+# Practical Statistics
 
 ## Outline
 - [Descriptive vs Inferential Statistics](#descr_infer)
@@ -50,7 +55,7 @@
     - [Measurs of Spread](#Measurs_of_Spread)
     - [Shape](#Shape)
     - [Outliers](#Outliers)
-    
+
 
 - [Probability](#Probability)
     - [Conditional Probability](#Conditional_Probability)
@@ -58,7 +63,7 @@
     - [Simulating Coins Flips in Python](#Simulating_Coins_Flips)
     - [Binominal Distribution <a name="binom_dis"></a>](#binom_dis)
     - [Simulating many Coins Flips in Python](#Simulating_many_Coins_Flips)
-    
+
 - [Inferential Statistics](#infer)
     - [Sampling Distribution](#sampling_dis)
     - [Law of Large Numbers](#law_large)
@@ -81,7 +86,9 @@
     - [Multiple Tests](#multi_tests)
     - [Summary](#sum)
     - [Hypothesis testing types](#hypo_test_types)
-    
+
+- [Accuracy, Precision, Recall and F1-Score for model prediction](#prec_and_recall)
+
 - [Setup Instructions](#Setup_Instructions)
     - [Prerequisites: Installation of Python via Anaconda and Command Line Interaface](#Prerequisites)
     - [Clone the project](#Clone_the_project)
@@ -102,12 +109,12 @@
 
 # Descriptive Statistics <a name="dscr"></a>
 ## What is data? <a name="What_is_data"></a>
-- Data can come in sin many forms: 
+- Data can come in sin many forms:
     - structured data (numerical data, relational databases)
     - unstructured data (images, audio, video)
 
 ## Data types <a name="Data_types"></a>
-- ***Quantitative***: numeric values 
+- ***Quantitative***: numeric values
     - ***discrete***: Pages in a Book, Trees in Yard, Dogs at a Coffee Shop
     - ***continuous***: Height, Age, Income
 - ***Categorical***: group or set of items
@@ -128,23 +135,23 @@ by looking at the counts or proportion of individuals that fall into each group.
 - ***Mean*** - average or the expected value
 
     <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{n} \sum_{i=1}^{n}  x_{i}" width="120px">
-    
+
     ```
-    # return the mean 
-    df.mean(axis=None, skipna=None, level=None, numeric_only=None, **kwargs) 
+    # return the mean
+    df.mean(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     ```
 - ***Median*** - value where 50% of the data are smaller and 50% are larger
     ```
-    # return the median 
-    df.median(axis=None, skipna=None, level=None, numeric_only=None, **kwargs) 
+    # return the median
+    df.median(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     ```
 - ***Mode*** - the most frequently observed value in the dataset
     ```
-    # return the mode 
-    df.mode(axis=0, numeric_only=False, dropna=True) 
+    # return the mode
+    df.mode(axis=0, numeric_only=False, dropna=True)
     ```
 
-Remember: 
+Remember:
 - In order to compute the median we MUST sort our values first
 - If two (or more) numbers share the maximum value, then there is more than one mode
 
@@ -267,7 +274,7 @@ df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
 - with ***statistics*** you use data to predict
 
 A probability summary:
-- P = Probility of an event 
+- P = Probility of an event
 - 1-P = probability of the opposite event
 - P*P*P*P*P*... = Probaility of composite (independent) event
 
@@ -287,7 +294,7 @@ The likelihood of event A occurring given that B is true:
 - <img src="https://render.githubusercontent.com/render/math?math=P(B) = P(B | A) \cdot P(A) %2B P(B | \bar{A}) \cdot P(\bar{A})" height="40px">
 
 Remember:
-- Calculate the prior probability 
+- Calculate the prior probability
 - Calculate the normalizer
 - Calculate the posterior probability
 
@@ -406,7 +413,7 @@ Remember:
     sample_props = np.array(sample_props)
     sample_props.mean()
     ```
-    
+
 
 ## Law of Large Numbers <a name="law_large"></a>
 The larger the sample size -> The closer the statistic gets to the parameter
@@ -438,22 +445,22 @@ The Central Limit Theorem actually applies for these well known statistics:
     for _ in range(10000):
         sample = np.random.choice(pop_data, 100)
         means_size_100.append(sample.mean())
-        
+
     plt.hist(means_size_100);
     ```
 
 ## [Bootstrapping](https://towardsdatascience.com/bootstrapping-statistics-what-it-is-and-why-its-used-e2fa29577307) <a name="Bootstrapping"></a>
-- Bootstrapping is random sampling with replacement. 
-- Bootstrapping is a statistical procedure that resamples a single dataset to create many simulated samples. 
+- Bootstrapping is random sampling with replacement.
+- Bootstrapping is a statistical procedure that resamples a single dataset to create many simulated samples.
 - This process allows for the calculation of standard errors, confidence intervals, and hypothesis testing
 
 How does it work?
 - A sample of size n is drawn from the population
-- Let us call this sample ***S***. 
-- S should be representative of the population. 
-- The sampling distribution is created by resampling observations with replacement from S, ***m times***, with each resampled set having ***n observations***. 
-- Therefore, by resampling S m times with replacement, it would be as if m samples were drawn from the original population, and the estimates derived would be representative of the theoretical distribution under the traditional approach. It must be noted that increasing the number of resamples, m, will not increase the amount of information in the data. 
-    
+- Let us call this sample ***S***.
+- S should be representative of the population.
+- The sampling distribution is created by resampling observations with replacement from S, ***m times***, with each resampled set having ***n observations***.
+- Therefore, by resampling S m times with replacement, it would be as if m samples were drawn from the original population, and the estimates derived would be representative of the theoretical distribution under the traditional approach. It must be noted that increasing the number of resamples, m, will not increase the amount of information in the data.
+
     ![image10]
 
 - Open notebook under ```notebooks/Building Confidence Intervals.ipynb.ipynb```
@@ -470,7 +477,7 @@ How does it work?
     # Simulate 200 "new" individuals from your original sample of 200
     bootsamp = coffee_red.sample(200, replace = True)
 
-    # What are the proportion of coffee drinkers in your bootstrap sample? 
+    # What are the proportion of coffee drinkers in your bootstrap sample?
     bootsamp['drinks_coffee'].mean() # Drink Coffee and 1 minus gives those who don't
     ```
 
@@ -482,11 +489,11 @@ How does it work?
         bootsamp = coffee_red.sample(200, replace = True)
         boot_mean = bootsamp[bootsamp['drinks_coffee'] == False]['height'].mean()
         boot_means.append(boot_mean)
-        
+
     plt.hist(boot_means); # Looks pretty normal
     ```
 
-- Using ***random.choice*** in python actually samples in this way. Where the probability of any number in our set stays the same regardless of how many times it has been chosen. Flipping a coin and rolling a die are kind of like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later. 
+- Using ***random.choice*** in python actually samples in this way. Where the probability of any number in our set stays the same regardless of how many times it has been chosen. Flipping a coin and rolling a die are kind of like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later.
 
 ## Confidence intervals <a name="Confidence_intervals"></a>
 - We can use bootstrapping and sampling distributions to build confidence intervals for our parameters of interest.
@@ -523,8 +530,8 @@ How does it work?
         coff_mean = bootsamp[bootsamp['drinks_coffee'] == True]['height'].mean()
         nocoff_mean = bootsamp[bootsamp['drinks_coffee'] == False]['height'].mean()
         diffs.append(coff_mean - nocoff_mean)
-        
-    np.percentile(diffs, 0.5), np.percentile(diffs, 99.5) 
+
+    np.percentile(diffs, 0.5), np.percentile(diffs, 99.5)
     # statistical evidence coffee drinkers are on average taller
 
     diffs_coff_under21 = []
@@ -533,7 +540,7 @@ How does it work?
         under21_coff_mean = bootsamp.query("age == '<21' and drinks_coffee == True")['height'].mean()
         under21_nocoff_mean = bootsamp.query("age == '<21' and drinks_coffee == False")['height'].mean()
         diffs_coff_under21.append(under21_nocoff_mean - under21_coff_mean)
-        
+
     np.percentile(diffs_coff_under21, 2.5), np.percentile(diffs_coff_under21, 97.5)
     # For the under21 group, we have evidence that the non-coffee drinkers are on average taller
 
@@ -543,7 +550,7 @@ How does it work?
         over21_coff_mean = bootsamp.query("age != '<21' and drinks_coffee == True")['height'].mean()
         over21_nocoff_mean = bootsamp.query("age != '<21' and drinks_coffee == False")['height'].mean()
         diffs_coff_over21.append(over21_nocoff_mean - over21_coff_mean)
-        
+
     np.percentile(diffs_coff_over21, 2.5), np.percentile(diffs_coff_over21, 97.5)
     # For the over21 group, we have evidence that on average the non-coffee drinkers are taller
     ```
@@ -558,7 +565,7 @@ How does it work?
 ## Confidence Intervals (& Hypothesis Testing) vs. Machine Learning <a name="Confidence_Intervals_vs_ML"></a>
 - Confidence intervals take an aggregate approach towards the conclusions made based on data, as these tests are aimed at understanding population parameters (which are aggregate population values).
 
-- Alternatively, machine learning techniques take an individual approach towards making conclusions, as they attempt to predict an outcome for each specific data point. 
+- Alternatively, machine learning techniques take an individual approach towards making conclusions, as they attempt to predict an outcome for each specific data point.
 
 ## Practical and Statistical Significance <a name="prac_sig"></a>
 - Using confidence intervals and hypothesis testing, you are able to provide statistical significance in making decisions.
@@ -601,7 +608,7 @@ How does it work?
 
 ## What are important parameters of hypothesis testing? <a name="para_hypo"></a>
 
-- ***Null hypothesis vs. Alternate hypotheis***: 
+- ***Null hypothesis vs. Alternate hypotheis***:
 
     ![image14]
 
@@ -631,25 +638,25 @@ How does it work?
     ![image32]
 
 - ***One-sided test***: Used when the null doesn’t contain equality or inequality sign. It contains:
-    - ```<``` 
+    - ```<```
     - ```>```
     - ```≤```
     - ```≥```
 
-    
 
-- ***Two-sided test***: Used when the null contains an 
+
+- ***Two-sided test***: Used when the null contains an
     - equality ```=```
     - or an inequality sign ```≠```
-    
 
-- ***Degree of freedom***: Degrees of Freedom refers to the maximum number of logically independent values, which are values that have the freedom to vary, in the data sample. 
+
+- ***Degree of freedom***: Degrees of Freedom refers to the maximum number of logically independent values, which are values that have the freedom to vary, in the data sample.
 
     Example: dataset with 10 values
 
     - no calculation: 10 degrees of freedom (each datapoint is free to choose)
-    - with an estimation (e.g. mean) - one constraint -> sum_total = 10 x mean 
-    
+    - with an estimation (e.g. mean) - one constraint -> sum_total = 10 x mean
+
 ## Simulating a sampling distribution from the Null Hypothesis <a name="sim_sample_dis"></a>
 - In the sectionon confidence intervals, we saw how we could simulate a sampling distribution for a statistic by bootstrapping the sample data. Alternatively, in hypothesis testing, we could simulate a sampling distribution from the null hypothesis using characteristics that would be true if our data were to have come from the null.
 
@@ -671,7 +678,7 @@ How does it work?
         bootsamp = sample_data.sample(200, replace = True)
         coff_mean = bootsamp[bootsamp['drinks_coffee'] == True]['height'].mean()
         nocoff_mean = bootsamp[bootsamp['drinks_coffee'] == False]['height'].mean()
-        # append the info 
+        # append the info
         coff_means.append(coff_mean)
         nocoff_means.append(nocoff_mean)
         diffs.append(coff_mean - nocoff_mean)   
@@ -740,7 +747,7 @@ How does it work?
     jud_data.query("actual == 'innocent' and predicted == 'guilty'").count()[0]/jud_data.shape[0] # Type 1 errors
     jud_data.query("actual == 'guilty' and predicted == 'innocent'").count()[0]/jud_data.shape[0] # Type 2 errors
 
-    # If everyone was predicted to be guilty, then every actual innocent 
+    # If everyone was predicted to be guilty, then every actual innocent
     # person would be a type I error.
     # Type I = pred guilty, but actual = innocent
     jud_data[jud_data['actual'] == 'innocent'].shape[0]/jud_data.shape[0]
@@ -752,8 +759,8 @@ How does it work?
     ```
 
 ## Impact of Large Sample Size <a name="imp_large_sample"></a>
-- With large sample sizes, hypothesis testing leads to even the smallest of findings as statistically significant. However, these findings might not be practically significant at all. 
-- Alternatively, machine learning techniques take an individual approach towards making conclusions, as they attempt to predict an outcome for each specific data point. 
+- With large sample sizes, hypothesis testing leads to even the smallest of findings as statistically significant. However, these findings might not be practically significant at all.
+- Alternatively, machine learning techniques take an individual approach towards making conclusions, as they attempt to predict an outcome for each specific data point.
 
     ![image36]
 
@@ -762,7 +769,7 @@ How does it work?
 ## How do Confidence Intervals and Hypothesis Testing compare? <a name="compete_conf_int_hypo"></a>
 - A two-sided hypothesis test (that is a test involving a ≠ in the alternative) is the same in terms of the conclusions made as a confidence interval as long as:
 
-    1 − CI = α 
+    1 − CI = α
 
 - For example, a 95% confidence interval will draw the same conclusions as a hypothesis test with a type I error rate of 0.05 in terms of which hypothesis to choose, because:
 
@@ -805,10 +812,10 @@ How does it work?
 - ***T- Test***:
     - ***One sample - two sided - Student's t-test***: determines whether the sample mean is statistically different from a known or hypothesised population mean.
 
-        Example : You have 10 ages and you are checking whether avg age is 30 or not. 
+        Example : You have 10 ages and you are checking whether avg age is 30 or not.
 
         - <img src="https://render.githubusercontent.com/render/math?math=H_{0}: \mu = 30" width="100px">
-        
+
         - <img src="https://render.githubusercontent.com/render/math?math=H_{1}: \mu \neq 30" width="100px">
 
         ```
@@ -833,7 +840,7 @@ How does it work?
 
     - ***Two (independent) samples - two sided - Student's t-test***: compares the means of two independent groups in order to determine whether there is statistical evidence that the associated population means are significantly different.
 
-        Example : is there any association between data1 and data2 
+        Example : is there any association between data1 and data2
 
         - <img src="https://render.githubusercontent.com/render/math?math=H_{0}: \mu_{1} = \mu_{2}" width="100px">
         - <img src="https://render.githubusercontent.com/render/math?math=H_{1}: \mu_{1} \neq \mu_{2}" width="100px">
@@ -1019,6 +1026,216 @@ How does it work?
     else:
         print("Retain H0,There is no relationship between 2 categorical variables")
     ```
+
+# Accuracy, Precision, Recall and F1-Score for model prediction <a name="prec_and_recall"></a>
+
+- Check this [link](https://towardsdatascience.com/understanding-accuracy-recall-precision-f1-scores-and-confusion-matrices-561e0f5e328c) for more information
+- ***Precision and Recall*** as the ***main metrics*** to prove the quality of a model
+- Precision and Recall as a measure of Relevance
+
+- Example: Two Datasets
+  ```
+  # Actual Value
+  labels =      [1, 0, 0, 1, 1, 1, 0, 1, 1, 1]
+  # Predicted Value
+  predictions = [0, 1, 1, 1, 1, 0, 1, 0, 1, 0]
+  ```
+
+
+- What we wnat to know: ***To find TRUE malignant tumor***
+  - T = Prediction state: correct predicted
+  - F = Prediction state: false predicted
+  - P = Truth (Label): email is spam
+  - N = Truth (Label): email not is spam
+
+- Four types of answers:
+  - TP = True Positive = email is spam and we CORRECTLY prredict it as spam --> ***label==pred==1***
+  - TN =  True Negative = email is NOT spam and we CORRECTLY prredict it NOT as spam --> ***label==pred==0***
+  - FP = False Positive = email is spam and we INCORRECTLY predict it as NOT spam --> ***label==1, pred==0***
+  - FN = False Negative = email is NOT spam and we INCORRECTLY prredict it NOT as spam --> ***label==0, pred==1***
+
+- ***AIM***: PREDICT the TRUTH
+    - maximize TP and TN (perfect model)
+    - minimize FP and
+
+- ***Correct prediction***:
+    - Condition: ***label==prediction***
+    - ***Correct prediction = TP + TN***
+
+- ***Incorrect prediction***:
+  - Condition: ***label != prediction***
+  - ***Incorrect prediction = FP + FN***
+
+- ***Accuracy*** =  (TP + TN) / (TP+TN+FP+FN) . Ratio of correct predictions to the **total number of predictions**
+- ***Recall*** = TP / (TP+FN) . Ratio of correct positive predictions and the **total number of positive occurences**
+- ***Precision*** = TP / (TP + FP) . Ratio of the correct positive predictions to the **total number of positive prediction**
+- ***F1 Score*** = 2 * Recall * Precision / (Recall + Precission) . Depends on both the Recall and Precision, it is the harmonic mean of both the values
+### Recall: Why is accuracy not enough?
+- Take a look at this example:
+  ```
+  labels =      [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
+  predictions = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  print(accuracy_score(labels , predictions)*100) # 80
+  ```
+  - A spam email is rare compared to a non-spam email. As a result, the number of occurrences with label = 0 is higher than that of label = 1.
+  - In the above code, our labels array has 8 non-spam emails and 2 spam emails.
+  - If our model is built in a way that it always classifies an email as non-spam, it will achieve an accuracy of 80%.
+  - ***Just accuracy can be highly misleading*** since our model is basically unable to detect spam emails.
+
+  - ***RECALL*** is a good metric in this case
+
+### Precision: Why is reacll still not enough?
+- Take a look at the following example:
+  ```
+  labels =      [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
+  predictions = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  print(accuracy_score(labels , predictions)*100)
+  print(recall_score(labels , predictions)*100)
+  ```
+  - A high recall can also be highly misleading.
+  - Consider the case when our model is tuned to always return a prediction of positive value.
+  - It essentially classifies all the emails as spam
+  - Although the above case would have low accuracy (20%), it would have a high recall score (100%).
+  - ***Just accuracy and recall can still be misleading***
+  - Precision would be low (20%) since the model predicted a total of 10 positives, out of which only 2 were correct.
+
+### F1-Score: What does it tell us?
+- F1 score depends on both the Recall and Precision, it is the harmonic mean of both the values.
+- We consider the harmonic mean over the arithmetic mean since we want a low Recall or Precision to produce a low F1 Score. In our previous case, where we had a recall of 100% and a precision of 20%, the arithmetic mean would be 60% while the Harmonic mean would be 33.33%. The Harmonic mean is lower and makes more sense since we know the model is pretty bad.
+
+### Confusion Matrix
+- A confusion matrix is a matrix to represent the number of True Positives, False Positives, True Negatives, and False Negatives.
+
+  ![image40]
+  ```
+  # Actual Value
+  labels =      [1, 0, 0, 1, 1, 1, 0, 1, 1, 1]
+  # Predicted Value
+  predictions = [0, 1, 1, 1, 1, 0, 1, 0, 1, 0]
+
+  # Comparision/Result   
+  # result =    [FP, FN, TN, TP, FP, FP, FN, FP, TP, FP]
+
+  # True Positive
+  TP = 0
+  for i in range(0,len(labels)):
+      if labels[i] == predictions[i] and labels[i] == 1:
+         TP+=1
+  print("True Positive: ", TP) # 3
+
+  # True Negative
+  TN = 0
+  for i in range(0,len(labels)):
+      if labels[i] == predictions[i] and labels[i] == 0:
+         TN+=1
+  print("True Negative: ", TN) # 0
+
+  # False Positive
+  FP = 0
+  for i in range(0,len(labels)):
+      if labels[i] == 0 and predictions[i] == 1:
+         FP+=1
+  print("False Positive: ", FP) # 3
+
+  # False Negative
+  FN = 0
+  for i in range(0,len(labels)):
+      if labels[i] == 1 and predictions[i] == 0:
+         FN+=1
+  print("False Negative: ", FN) # 4
+
+  # Correct pred
+  CP = 0
+  for i in range(0,len(labels)):
+      if labels[i] == predictions[i]:
+         CP+=1
+  print("Correct Prediction: ", CP) # 3
+  print(CP == TP + TN) # True
+
+  # Incorrect pred
+  ICP = 0
+  for i in range(0,len(labels)):
+    if labels[i] != predictions[i]:
+       ICP+=1
+  print("Incorrect Prediction: ", ICP) # 7
+  print(ICP == FP + FN) # True
+
+  # Accuracy
+  accuracy = (TP + TN)/(TP + FP + TN + FN)
+  print(accuracy*100)
+
+  # Accuracy with scikit Learn
+  from sklearn.metrics import accuracy_score
+  print(accuracy_score(labels , predictions)*100)
+
+  # Recall
+  recall = (TP)/(TP+FN)
+  print(recall*100)
+
+  # Recall with scikit learn
+  from sklearn.metrics import recall_score
+  print(recall_score(labels,predictions))
+
+  # Precision
+  precision = TP/(TP+FP)
+  print(precision)
+
+  # Precision with scikit-learn
+  from sklearn.metrics import precision_score
+  print(precision_score(labels,predictions)*100)
+
+  # f1 Score
+  f1 = 2*(precision * recall)/(precision + recall)
+  print(f1)
+
+  # f1 Score with scikit learn
+  from sklearn.metrics import f1_score
+  print(f1_score(labels, predictions))
+  ```
+
+  ***Confusion Matrix***
+  ```
+  # Calculating Confusion Matrix using sklearn
+  from sklearn.metrics import confusion_matrix
+  confusion = confusion_matrix(labels, predictions)
+  FN = confusion[1][0]
+  TN = confusion[0][0]
+  TP = confusion[1][1]
+  FP = confusion[0][1]
+  ```
+  ***Displaying Confusion Matrix as Bar Graph***
+  ```
+  plt.bar(['False Negative' , 'True Negative' , 'True Positive' , 'False Positive'],[FN,TN,TP,FP])
+  plt.show()
+  ```
+  ![image41]
+
+  ***Displaying Confusion Matrix as Heatmap***
+  ```
+  import seaborn as sns
+  sns.heatmap(confusion , annot=True , xticklabels=['Negative' , 'Positive'] , yticklabels=['Negative' , 'Positive'])
+  plt.ylabel("Label")
+  plt.xlabel("Predicted")
+  plt.show()
+  ```
+  ![image42]
+
+  ***Displaying Confusion Matrix using Pandas***
+  ```
+  import pandas as pd
+  data = {'Labels' : labels, 'Predictions': predictions}
+  df = pd.DataFrame(data, columns=['Labels','Predictions'])
+  confusion_matrix = pd.crosstab(df['Labels'], df['Predictions'], rownames=['Labels'], colnames=['Predictions'])
+  print (confusion_matrix)
+  ```
+  ![image43]
+
+  ***Using Sklearn to generate Classification Report***
+  ```
+  from sklearn.metrics import classification_report
+  print(classification_report(labels,predictions))
+  ```
+  ![image44]
 
 
 # Setup Instructions <a name="Setup_Instructions"></a>

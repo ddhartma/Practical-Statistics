@@ -1231,6 +1231,8 @@ How does it work?
   ![image43]
 
   ***Using Sklearn to generate Classification Report***
+
+  - For more Info check this [link](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html)
   ```
   from sklearn.metrics import classification_report
   print(classification_report(labels,predictions))

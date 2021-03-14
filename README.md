@@ -1042,7 +1042,7 @@ How does it work?
   ```
 
 
-- What we wnat to know: ***To find TRUE malignant tumor***
+- ***How to Find TRUE malignant tumor***
   - T = Prediction state: correct predicted
   - F = Prediction state: false predicted
   - P = Truth (Label): email is spam
@@ -1070,12 +1070,22 @@ How does it work?
 - ***Recall*** = TP / (TP+FN) . Ratio of correct positive predictions and the **total number of positive occurences**
 - ***Precision*** = TP / (TP + FP) . Ratio of the correct positive predictions to the **total number of positive prediction**
 - ***F1 Score*** = 2 * Recall * Precision / (Recall + Precission) . Depends on both the Recall and Precision, it is the harmonic mean of both the values
+
+
+
 ### Recall: Why is accuracy not enough?
+- For the following code import:
+  ```
+  from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
+  ```
 - Take a look at this example:
   ```
   labels =      [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
   predictions = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  print(accuracy_score(labels , predictions)*100) # 80
+  print(accuracy_score(labels , predictions)*100)
+
+  Result:
+  accuracy = 80%
   ```
   - A spam email is rare compared to a non-spam email. As a result, the number of occurrences with label = 0 is higher than that of label = 1.
   - In the above code, our labels array has 8 non-spam emails and 2 spam emails.
@@ -1084,13 +1094,17 @@ How does it work?
 
   - ***RECALL*** is a good metric in this case
 
-### Precision: Why is reacll still not enough?
+### Precision: Why is recall still not enough?
 - Take a look at the following example:
   ```
   labels =      [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
   predictions = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   print(accuracy_score(labels , predictions)*100)
   print(recall_score(labels , predictions)*100)
+
+  Result:
+  accuracy = 20%
+  recall = 100%
   ```
   - A high recall can also be highly misleading.
   - Consider the case when our model is tuned to always return a prediction of positive value.

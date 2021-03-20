@@ -725,9 +725,7 @@ How does it work?
     ```
 
 ## Conclusions in Hypothesis Testing - Calculating errors <a name="concl_hypo"></a>
-- The word ***accept*** is one that is avoided when making statements regarding the null and alternative. You are not stating that one of the hypotheses is true. Rather, you are making a decision based on the likelihood of your data coming from the null hypothesis with regard to your type I error threshold.
-
-- Therefore, the wording used in conclusions of hypothesis testing includes: We reject the null hypothesis or We fail to reject the null hypothesis. This lends itself to the idea that you start with the null hypothesis true by default, and "choosing" the null at the end of the test would have been the choice even if no data were collected.
+-  We reject the null hypothesis or We fail to reject the null hypothesis. Do not use the word 'accept'. At start the null hypothesis is true by default.
 
 
     ![image35]
@@ -767,11 +765,11 @@ How does it work?
 - Open notebook under ```notebooks/What is the impact of sample size.ipynb```
 
 ## How do Confidence Intervals and Hypothesis Testing compare? <a name="compete_conf_int_hypo"></a>
-- A two-sided hypothesis test (that is a test involving a ≠ in the alternative) is the same in terms of the conclusions made as a confidence interval as long as:
+- In terms of the conclusions a two-sided hypothesis test (that is a test involving a ≠ in the alternative) is the same as a confidence interval as long as:
 
     1 − CI = α
 
-- For example, a 95% confidence interval will draw the same conclusions as a hypothesis test with a type I error rate of 0.05 in terms of which hypothesis to choose, because:
+- For example, a 95% confidence interval will draw the same conclusions as a hypothesis test with a type I error rate of 0.05, because:
 
     1 − 0.95 = 0.05
 

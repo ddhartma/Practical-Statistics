@@ -52,7 +52,7 @@
     - [Analyzing Categorical data](#Analyzing_Categorical_data)
     - [Measures of Center](#measure_of_center)
     - [Notation](#Notation)
-    - [Measurs of Spread](#Measurs_of_Spread)
+    - [Measures of Spread](#Measurs_of_Spread)
     - [Shape](#Shape)
     - [Outliers](#Outliers)
 
@@ -61,7 +61,7 @@
     - [Conditional Probability](#Conditional_Probability)
     - [Bayes Rule](#Bayes_Rule)
     - [Simulating Coins Flips in Python](#Simulating_Coins_Flips)
-    - [Binominal Distribution <a name="binom_dis"></a>](#binom_dis)
+    - [Binomial Distribution <a name="binom_dis"></a>](#binom_dis)
     - [Simulating many Coins Flips in Python](#Simulating_many_Coins_Flips)
 
 - [Inferential Statistics](#infer)
@@ -90,7 +90,7 @@
 - [Accuracy, Precision, Recall and F1-Score for model prediction](#prec_and_recall)
 
 - [Setup Instructions](#Setup_Instructions)
-    - [Prerequisites: Installation of Python via Anaconda and Command Line Interaface](#Prerequisites)
+    - [Prerequisites: Installation of Python via Anaconda and Command Line Interface](#Prerequisites)
     - [Clone the project](#Clone_the_project)
 - [Acknowledgments](#Acknowledgments)
 - [Further Links](#Further_Links)
@@ -165,7 +165,7 @@ Remember:
 
 ## Measurs of Spread <a name="Measurs_of_Spread"></a>
 - Use histograms for visualization data in certain bins (e.g. 1-4, 5-8, 9-12, 13-16)
-- Use boxplot for analyse median and quartiles, maximum, minimum, IQR
+- Use box plot for analyze median and quartiles, maximum, minimum, IQR
 1. Use the ***5 number summary***
 
     - ***Minimum***: The smallest number in the dataset.
@@ -175,13 +175,13 @@ Remember:
     - ***Maximum***: The largest value in the dataset.
 
     In Addition:
-    - ***Range***: difference between the maximum and the minimum
+    - ***Range***: Difference between the maximum and the minimum
     - ***IQR***: The interquartile range is calculated as the difference between Q3 and Q1
 
     ![image1]
 
     ```
-    # calculate min, max, quantiles
+    # Calculate min, max, quantiles
     df.min(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     df.max(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     df.quantile(q=0.5, axis=0, numeric_only=True, interpolation='linear')
@@ -205,7 +205,7 @@ Remember:
         <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{1}{n-1} \sum_{i=1}^{n-1}  (x_{i} - \bar{x})^2}" width="200px">
 
     ```
-    # calculate standard deviation
+    # Calculate standard deviation
     df.std(axis=None, skipna=None, level=None, ddof=1, numeric_only=None, **kwargs)
     ```
 ## Shape <a name="Shape"></a>
@@ -218,7 +218,7 @@ Remember:
 | Left-skewed 	| Mean less than Median | Grades as a percentage in many universities, Age of death, Asset price changes
 
 ```
-# calculate skewness
+# Calculate skewness
 df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
 ```
 
@@ -226,11 +226,11 @@ df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
 - Use e.g. histograms to detect outliers
 - Use the Tukey rule
 
-    - Find the first quartile Q1 (ie .25 quantile)
-    - Find the third quartile Q3 (ie .75 quantile)
+    - Find the first quartile Q1 (i.e. .25 quantile)
+    - Find the third quartile Q3 (i.e. .75 quantile)
     - Calculate the inter-quartile range IQR (Q3 - Q1)
     - Any value that is greater than Q3 + 1.5 * IQR is an outlier
-    - Any value that is less than Qe - 1.5 * IQR is an outlier
+    - Any value that is less than Q1 - 1.5 * IQR is an outlier
 
     ```
     def tukey_rule(data_frame, column_name):
@@ -274,9 +274,9 @@ df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
 - with ***statistics*** you use data to predict
 
 A probability summary:
-- P = Probility of an event
-- 1-P = probability of the opposite event
-- P*P*P*P*P*... = Probaility of composite (independent) event
+- P = Probability of an event
+- 1-P = Probability of the opposite event
+- P * P * P * P * P *... = Probability of composite (independent) event
 
 ## Conditional Probability <a name="Probability"></a>
 We can formulate conditional probabilities for any two events in the following way:
@@ -455,11 +455,11 @@ The Central Limit Theorem actually applies for these well known statistics:
 - This process allows for the calculation of standard errors, confidence intervals, and hypothesis testing
 
 How does it work?
-- A sample of size n is drawn from the population
+- A sample of size ***n*** is drawn from the population
 - Let us call this sample ***S***.
-- S should be representative of the population.
-- The sampling distribution is created by resampling observations with replacement from S, ***m times***, with each resampled set having ***n observations***.
-- Therefore, by resampling S m times with replacement, it would be as if m samples were drawn from the original population, and the estimates derived would be representative of the theoretical distribution under the traditional approach. It must be noted that increasing the number of resamples, m, will not increase the amount of information in the data.
+- ***S*** should be representative of the population.
+- The sampling distribution is created by resampling observations with replacement from ***S***, ***m times***, with each resampled set having ***n observations***.
+- Therefore, by resampling ***S***, ***m times***, with replacement, it would be as if ***m*** samples were drawn from the original population, and the estimates derived would be representative of the theoretical distribution under the traditional approach. It must be noted that increasing the number of resamples, ***m***, will not increase the amount of information in the data.
 
     ![image10]
 

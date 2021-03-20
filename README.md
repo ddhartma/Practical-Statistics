@@ -658,7 +658,7 @@ How does it work?
     - with an estimation (e.g. mean) - one constraint -> sum_total = 10 x mean
 
 ## Simulating a sampling distribution from the Null Hypothesis <a name="sim_sample_dis"></a>
-- In the sectionon confidence intervals, we saw how we could simulate a sampling distribution for a statistic by bootstrapping the sample data. Alternatively, in hypothesis testing, we could simulate a sampling distribution from the null hypothesis using characteristics that would be true if our data were to have come from the null.
+- We saw how we could simulate a sampling distribution for a statistic by bootstrapping the sample data. Alternatively, in hypothesis testing, we could simulate a sampling distribution from the null hypothesis using characteristics that would be true if our data were to have come from the null.
 
 - Open notebook under ```notebooks/Simulating From the Null.ipynb```
     ```

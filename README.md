@@ -109,7 +109,7 @@
 
 # Descriptive Statistics <a name="dscr"></a>
 ## What is data? <a name="What_is_data"></a>
-- Data can come in sin many forms:
+- Data can be built up from many forms:
     - structured data (numerical data, relational databases)
     - unstructured data (images, audio, video)
 
@@ -493,7 +493,7 @@ How does it work?
     plt.hist(boot_means); # Looks pretty normal
     ```
 
-- Using ***random.choice*** in python actually samples in this way. Where the probability of any number in our set stays the same regardless of how many times it has been chosen. Flipping a coin and rolling a die are kind of like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later.
+- Using ***random.choice*** in python actually samples in this way. Flipping a coin and rolling a die are kind of like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later. The probability of any number in that set stays the same regardless of how many times it has been chosen.
 
 ## Confidence intervals <a name="Confidence_intervals"></a>
 - We can use bootstrapping and sampling distributions to build confidence intervals for our parameters of interest.
@@ -581,14 +581,14 @@ How does it work?
 
 ## What is hypothesis testing? <a name="What_is_hypothesis_testing"></a>
 
-- A hypothesis is “an idea that can be tested”. Hypothesis testing is a statistical method used for making decisions based on experimental data. It's basically an assumption that we make about the population parameter.
-- Hypothesis Testing and Confidence Intervals allow us to use only sample data to draw conclusions about an entire population
+- A hypothesis is “an idea that can be tested”. Hypothesis Testing is a statistical method used for making decisions based on experimental data. It's basically an assumption that we make about the population parameter.
+- Hypothesis Testing and Confidence Intervals allow us to use only sample data to draw conclusions about an entire population.
 
 
 
-## What are the basics of hypothesis testing? <a name="basics_hypo"></a>
+## What are the basics of Hypothesis Testing? <a name="basics_hypo"></a>
 
-- The basic of hypothesis is [normalisation](https://en.wikipedia.org/wiki/Normalization_(statistics)) and [standard normalisation](https://stats.stackexchange.com/questions/10289/whats-the-difference-between-normalization-and-standardization). All hypothesis tests are based on these 2 terms.
+- The basic of Hypothesis Testing is [normalisation](https://en.wikipedia.org/wiki/Normalization_(statistics)) and [standard normalisation](https://stats.stackexchange.com/questions/10289/whats-the-difference-between-normalization-and-standardization). All hypothesis tests are based on these 2 terms.
 
     ![image16]
 

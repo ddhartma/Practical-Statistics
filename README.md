@@ -1046,7 +1046,7 @@ How does it work?
   - T = Prediction state: correct predicted
   - F = Prediction state: false predicted
   - P = Truth (Label): email is spam
-  - N = Truth (Label): email not is spam
+  - N = Truth (Label): email is not spam
 
 - Four types of answers:
   - TP = True Positive = email is spam and we CORRECTLY prredict it as spam --> ***label==pred==1***
@@ -1056,7 +1056,7 @@ How does it work?
 
 - ***AIM***: PREDICT the TRUTH
     - maximize TP and TN (perfect model)
-    - minimize FP and
+    - minimize FP and FN
 
 - ***Correct prediction***:
     - Condition: ***label==prediction***

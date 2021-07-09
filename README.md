@@ -52,7 +52,7 @@
     - [Analyzing Categorical data](#Analyzing_Categorical_data)
     - [Measures of Center](#measure_of_center)
     - [Notation](#Notation)
-    - [Measurs of Spread](#Measurs_of_Spread)
+    - [Measures of Spread](#Measurs_of_Spread)
     - [Shape](#Shape)
     - [Outliers](#Outliers)
 
@@ -61,7 +61,7 @@
     - [Conditional Probability](#Conditional_Probability)
     - [Bayes Rule](#Bayes_Rule)
     - [Simulating Coins Flips in Python](#Simulating_Coins_Flips)
-    - [Binominal Distribution <a name="binom_dis"></a>](#binom_dis)
+    - [Binomial Distribution <a name="binom_dis"></a>](#binom_dis)
     - [Simulating many Coins Flips in Python](#Simulating_many_Coins_Flips)
 
 - [Inferential Statistics](#infer)
@@ -90,7 +90,7 @@
 - [Accuracy, Precision, Recall and F1-Score for model prediction](#prec_and_recall)
 
 - [Setup Instructions](#Setup_Instructions)
-    - [Prerequisites: Installation of Python via Anaconda and Command Line Interaface](#Prerequisites)
+    - [Prerequisites: Installation of Python via Anaconda and Command Line Interface](#Prerequisites)
     - [Clone the project](#Clone_the_project)
 - [Acknowledgments](#Acknowledgments)
 - [Further Links](#Further_Links)
@@ -109,7 +109,7 @@
 
 # Descriptive Statistics <a name="dscr"></a>
 ## What is data? <a name="What_is_data"></a>
-- Data can come in sin many forms:
+- Data can be built up from many forms:
     - structured data (numerical data, relational databases)
     - unstructured data (images, audio, video)
 
@@ -165,7 +165,7 @@ Remember:
 
 ## Measurs of Spread <a name="Measurs_of_Spread"></a>
 - Use histograms for visualization data in certain bins (e.g. 1-4, 5-8, 9-12, 13-16)
-- Use boxplot for analyse median and quartiles, maximum, minimum, IQR
+- Use box plot for analyze median and quartiles, maximum, minimum, IQR
 1. Use the ***5 number summary***
 
     - ***Minimum***: The smallest number in the dataset.
@@ -175,13 +175,13 @@ Remember:
     - ***Maximum***: The largest value in the dataset.
 
     In Addition:
-    - ***Range***: difference between the maximum and the minimum
+    - ***Range***: Difference between the maximum and the minimum
     - ***IQR***: The interquartile range is calculated as the difference between Q3 and Q1
 
     ![image1]
 
     ```
-    # calculate min, max, quantiles
+    # Calculate min, max, quantiles
     df.min(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     df.max(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     df.quantile(q=0.5, axis=0, numeric_only=True, interpolation='linear')
@@ -205,7 +205,7 @@ Remember:
         <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{1}{n-1} \sum_{i=1}^{n-1}  (x_{i} - \bar{x})^2}" width="200px">
 
     ```
-    # calculate standard deviation
+    # Calculate standard deviation
     df.std(axis=None, skipna=None, level=None, ddof=1, numeric_only=None, **kwargs)
     ```
 ## Shape <a name="Shape"></a>
@@ -218,7 +218,7 @@ Remember:
 | Left-skewed 	| Mean less than Median | Grades as a percentage in many universities, Age of death, Asset price changes
 
 ```
-# calculate skewness
+# Calculate skewness
 df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
 ```
 
@@ -226,11 +226,11 @@ df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
 - Use e.g. histograms to detect outliers
 - Use the Tukey rule
 
-    - Find the first quartile Q1 (ie .25 quantile)
-    - Find the third quartile Q3 (ie .75 quantile)
+    - Find the first quartile Q1 (i.e. .25 quantile)
+    - Find the third quartile Q3 (i.e. .75 quantile)
     - Calculate the inter-quartile range IQR (Q3 - Q1)
     - Any value that is greater than Q3 + 1.5 * IQR is an outlier
-    - Any value that is less than Qe - 1.5 * IQR is an outlier
+    - Any value that is less than Q1 - 1.5 * IQR is an outlier
 
     ```
     def tukey_rule(data_frame, column_name):
@@ -274,9 +274,9 @@ df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
 - with ***statistics*** you use data to predict
 
 A probability summary:
-- P = Probility of an event
-- 1-P = probability of the opposite event
-- P*P*P*P*P*... = Probaility of composite (independent) event
+- P = Probability of an event
+- 1-P = Probability of the opposite event
+- P * P * P * P * P *... = Probability of composite (independent) event
 
 ## Conditional Probability <a name="Probability"></a>
 We can formulate conditional probabilities for any two events in the following way:
@@ -455,11 +455,11 @@ The Central Limit Theorem actually applies for these well known statistics:
 - This process allows for the calculation of standard errors, confidence intervals, and hypothesis testing
 
 How does it work?
-- A sample of size n is drawn from the population
+- A sample of size ***n*** is drawn from the population
 - Let us call this sample ***S***.
-- S should be representative of the population.
-- The sampling distribution is created by resampling observations with replacement from S, ***m times***, with each resampled set having ***n observations***.
-- Therefore, by resampling S m times with replacement, it would be as if m samples were drawn from the original population, and the estimates derived would be representative of the theoretical distribution under the traditional approach. It must be noted that increasing the number of resamples, m, will not increase the amount of information in the data.
+- ***S*** should be representative of the population.
+- The sampling distribution is created by resampling observations with replacement from ***S***, ***m times***, with each resampled set having ***n observations***.
+- Therefore, by resampling ***S***, ***m times***, with replacement, it would be as if ***m*** samples were drawn from the original population, and the estimates derived would be representative of the theoretical distribution under the traditional approach. It must be noted that increasing the number of resamples, ***m***, will not increase the amount of information in the data.
 
     ![image10]
 
@@ -493,7 +493,7 @@ How does it work?
     plt.hist(boot_means); # Looks pretty normal
     ```
 
-- Using ***random.choice*** in python actually samples in this way. Where the probability of any number in our set stays the same regardless of how many times it has been chosen. Flipping a coin and rolling a die are kind of like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later.
+- Using ***random.choice*** in python actually samples in this way. Flipping a coin and rolling a die are kind of like bootstrap sampling as well, as rolling a 6 in one scenario doesn't mean that 6 is less likely later. The probability of any number in that set stays the same regardless of how many times it has been chosen.
 
 ## Confidence intervals <a name="Confidence_intervals"></a>
 - We can use bootstrapping and sampling distributions to build confidence intervals for our parameters of interest.
@@ -581,14 +581,14 @@ How does it work?
 
 ## What is hypothesis testing? <a name="What_is_hypothesis_testing"></a>
 
-- A hypothesis is “an idea that can be tested”. Hypothesis testing is a statistical method used for making decisions based on experimental data. It's basically an assumption that we make about the population parameter.
-- Hypothesis Testing and Confidence Intervals allow us to use only sample data to draw conclusions about an entire population
+- A hypothesis is “an idea that can be tested”. Hypothesis Testing is a statistical method used for making decisions based on experimental data. It's basically an assumption that we make about the population parameter.
+- Hypothesis Testing and Confidence Intervals allow us to use only sample data to draw conclusions about an entire population.
 
 
 
-## What are the basics of hypothesis testing? <a name="basics_hypo"></a>
+## What are the basics of Hypothesis Testing? <a name="basics_hypo"></a>
 
-- The basic of hypothesis is [normalisation](https://en.wikipedia.org/wiki/Normalization_(statistics)) and [standard normalisation](https://stats.stackexchange.com/questions/10289/whats-the-difference-between-normalization-and-standardization). All hypothesis tests are based on these 2 terms.
+- The basic of Hypothesis Testing is [normalisation](https://en.wikipedia.org/wiki/Normalization_(statistics)) and [standard normalisation](https://stats.stackexchange.com/questions/10289/whats-the-difference-between-normalization-and-standardization). All hypothesis tests are based on these 2 terms.
 
     ![image16]
 
@@ -658,7 +658,7 @@ How does it work?
     - with an estimation (e.g. mean) - one constraint -> sum_total = 10 x mean
 
 ## Simulating a sampling distribution from the Null Hypothesis <a name="sim_sample_dis"></a>
-- In the sectionon confidence intervals, we saw how we could simulate a sampling distribution for a statistic by bootstrapping the sample data. Alternatively, in hypothesis testing, we could simulate a sampling distribution from the null hypothesis using characteristics that would be true if our data were to have come from the null.
+- We saw how we could simulate a sampling distribution for a statistic by bootstrapping the sample data. Alternatively, in hypothesis testing, we could simulate a sampling distribution from the null hypothesis using characteristics that would be true if our data were to have come from the null.
 
 - Open notebook under ```notebooks/Simulating From the Null.ipynb```
     ```
@@ -725,9 +725,7 @@ How does it work?
     ```
 
 ## Conclusions in Hypothesis Testing - Calculating errors <a name="concl_hypo"></a>
-- The word ***accept*** is one that is avoided when making statements regarding the null and alternative. You are not stating that one of the hypotheses is true. Rather, you are making a decision based on the likelihood of your data coming from the null hypothesis with regard to your type I error threshold.
-
-- Therefore, the wording used in conclusions of hypothesis testing includes: We reject the null hypothesis or We fail to reject the null hypothesis. This lends itself to the idea that you start with the null hypothesis true by default, and "choosing" the null at the end of the test would have been the choice even if no data were collected.
+-  We reject the null hypothesis or We fail to reject the null hypothesis. Do not use the word 'accept'. At start the null hypothesis is true by default.
 
 
     ![image35]
@@ -767,11 +765,11 @@ How does it work?
 - Open notebook under ```notebooks/What is the impact of sample size.ipynb```
 
 ## How do Confidence Intervals and Hypothesis Testing compare? <a name="compete_conf_int_hypo"></a>
-- A two-sided hypothesis test (that is a test involving a ≠ in the alternative) is the same in terms of the conclusions made as a confidence interval as long as:
+- In terms of the conclusions a two-sided hypothesis test (that is a test involving a ≠ in the alternative) is the same as a confidence interval as long as:
 
     1 − CI = α
 
-- For example, a 95% confidence interval will draw the same conclusions as a hypothesis test with a type I error rate of 0.05 in terms of which hypothesis to choose, because:
+- For example, a 95% confidence interval will draw the same conclusions as a hypothesis test with a type I error rate of 0.05, because:
 
     1 − 0.95 = 0.05
 

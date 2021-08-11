@@ -136,17 +136,17 @@ by looking at the counts or proportion of individuals that fall into each group.
 
     <img src="https://render.githubusercontent.com/render/math?math=\frac{1}{n} \sum_{i=1}^{n}  x_{i}" width="120px">
 
-    ```
+    ```python
     # return the mean
     df.mean(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     ```
 - ***Median*** - value where 50% of the data are smaller and 50% are larger
-    ```
+    ```python
     # return the median
     df.median(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     ```
 - ***Mode*** - the most frequently observed value in the dataset
-    ```
+    ```python
     # return the mode
     df.mode(axis=0, numeric_only=False, dropna=True)
     ```
@@ -180,7 +180,7 @@ Remember:
 
     ![image1]
 
-    ```
+    ```python
     # Calculate min, max, quantiles
     df.min(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     df.max(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
@@ -204,7 +204,7 @@ Remember:
 
         <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{1}{n-1} \sum_{i=1}^{n-1}  (x_{i} - \bar{x})^2}" width="200px">
 
-    ```
+    ```python
     # Calculate standard deviation
     df.std(axis=None, skipna=None, level=None, ddof=1, numeric_only=None, **kwargs)
     ```
@@ -217,7 +217,7 @@ Remember:
 | Right-skewed 	| Mean greater than Median |	Amount of drug remaining in a blood stream, Time between phone calls at a call center, Time until light bulb dies
 | Left-skewed 	| Mean less than Median | Grades as a percentage in many universities, Age of death, Asset price changes
 
-```
+```python
 # Calculate skewness
 df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
 ```
@@ -232,7 +232,7 @@ df.skew(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)
     - Any value that is greater than Q3 + 1.5 * IQR is an outlier
     - Any value that is less than Q1 - 1.5 * IQR is an outlier
 
-    ```
+    ```python
     def tukey_rule(data_frame, column_name):
   """ use Tukey rule to detect outliers in a dataframe column, output a data_frame with the outliers eliminated
 
@@ -325,7 +325,7 @@ Posterior probability
 
 ## Simulating Coins Flips in Python <a name="Simulating_Coins_Flips"></a>
 - Open notebook under ```notebooks/simulating_coin_flips.ipynb```
-    ```
+    ```python
     import numpy as np
     import matplotlib.pyplot as plt
     % matplotlib inline
@@ -364,7 +364,7 @@ where ***n*** is the number of events, ***k*** is the number of "successes", and
 
 ## Simulating many Coins Flips in Python <a name="Simulating_many_Coins_Flips"></a>
 - Open notebook under ```notebooks/simulating_many_coin_flips.ipynb```
-    ```
+    ```python
     import numpy as np
 
     # number of heads from 10 fair coin flips
@@ -403,7 +403,7 @@ Remember:
 
 - Open notebook under ```notebooks/Sampling Distributions-Solution.ipynb```
 
-    ```
+    ```python
     sample_props = []
     for _ in range(10000):
         sample = np.random.choice(students, 5, replace=True)
@@ -431,7 +431,7 @@ The Central Limit Theorem actually applies for these well known statistics:
 
 - Open notebook under ```notebooks/Sampling Distributions ... Central Limit Theorem.ipynb```
 
-    ```
+    ```python
     import numpy as np
     import matplotlib.pyplot as plt
 
@@ -464,7 +464,7 @@ How does it work?
     ![image10]
 
 - Open notebook under ```notebooks/Building Confidence Intervals.ipynb.ipynb```
-    ```
+    ```python
     import numpy as np
     import matplotlib.pyplot as plt
     %matplotlib inline
@@ -481,7 +481,7 @@ How does it work?
     bootsamp['drinks_coffee'].mean() # Drink Coffee and 1 minus gives those who don't
     ```
 
-    ```
+    ```python
     # Simulate a bootstrap sample 10,000 times
     # take the mean height of the non-coffee drinkers in each sample
     boot_means = []
@@ -506,14 +506,14 @@ How does it work?
 
 - Open notebook under ```notebooks/Building Confidence Intervals.ipynb```
 
-    ```
+    ```python
     np.percentile(boot_means, 2.5), np.percentile(boot_means, 97.5)
     ```
 - Check the code under Bootsrapping section (the confidence code line will follow on that code)
 
 - The following example considers confidence intervals for the difference in means. This is similar to the Bootstrpping code above.
 - Open notebook under ```notebooks/Confidence Intervals - Difference in Means.ipynb```
-    ```
+    ```python
     import pandas as pd
     import numpy as np
     import matplotlib.pyplot as plt
@@ -661,7 +661,7 @@ How does it work?
 - We saw how we could simulate a sampling distribution for a statistic by bootstrapping the sample data. Alternatively, in hypothesis testing, we could simulate a sampling distribution from the null hypothesis using characteristics that would be true if our data were to have come from the null.
 
 - Open notebook under ```notebooks/Simulating From the Null.ipynb```
-    ```
+    ```python
     import pandas as pd
     import numpy as np
     import matplotlib.pyplot as plt
@@ -706,7 +706,7 @@ How does it work?
 
 - Open notebook under ```notebooks/Simulating From the Null.ipynb``` (see the code above and add the following lines)
 
-    ```
+    ```python
     null_vals = np.random.normal(70, np.std(coff_means), 10000)
     plt.hist(null_vals); #Here is the sampling distribution of coff_means
     sample_mean = sample_data.height.mean()
@@ -734,7 +734,7 @@ How does it work?
 
 - Open notebook under ```notebooks/Drawing Conclusions.ipynb```
 
-    ```
+    ```python
     import numpy as np
     import pandas as pd
 
@@ -798,7 +798,7 @@ How does it work?
 
 - ***Python SciPy to test for Hypothesis Testing***
     - SciPy [ttest_1samp](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_1samp.html)
-        ```
+        ```python
         scipy.stats.ttest_1samp(
             a, # array like input
             popmean, # Expected value in null hypothesis (float or array_like)
@@ -816,7 +816,7 @@ How does it work?
 
         - <img src="https://render.githubusercontent.com/render/math?math=H_{1}: \mu \neq 30" width="100px">
 
-        ```
+        ```python
         # One sample - two sided - Student's t-test
         from scipy.stats import ttest_1samp
         import numpy as np
@@ -843,7 +843,7 @@ How does it work?
         - <img src="https://render.githubusercontent.com/render/math?math=H_{0}: \mu_{1} = \mu_{2}" width="100px">
         - <img src="https://render.githubusercontent.com/render/math?math=H_{1}: \mu_{1} \neq \mu_{2}" width="100px">
 
-        ```
+        ```python
         # Two (independent) samples - two sided - Student's t-test
         from scipy.stats import ttest_ind
 
@@ -862,7 +862,7 @@ How does it work?
         - <img src="https://render.githubusercontent.com/render/math?math=H_{0}: \mu_{1} - \mu_{2} = 0" width="150px">
         - <img src="https://render.githubusercontent.com/render/math?math=H_{1}: \mu_{1} - \mu_{2} \neq 0" width="150px">
 
-        ```
+        ```python
         # Two (dependent/paired) samples - two sided - Student's t-test
         from scipy.stats import ttest_rel
         data1 = [0.873, 2.817, 0.121, -0.945, -0.055, -1.436, 0.360, -1.478, -1.637, -1.869]
@@ -895,7 +895,7 @@ How does it work?
         - <img src="https://render.githubusercontent.com/render/math?math=H_{0}: \mu = 156" width="100px">
         - <img src="https://render.githubusercontent.com/render/math?math=H_{1}: \mu \neq 156" width="100px">
 
-        ```
+        ```python
         # One-sample - two sided - z-test
         import pandas as pd
         from scipy import stats
@@ -918,7 +918,7 @@ How does it work?
 
         Example : we are checking in blood data after blood and before blood data.(code in python below)
 
-        ```
+        ```python
         # Two (independent) samples - two sided - z-test
         ztest, pval1 = stests.ztest(df['bp_before'], x2=df['bp_after'], value=0, alternative='two-sided')
 
@@ -940,7 +940,7 @@ How does it work?
 
         Example : there are 3 different categories of plants and their weights and need to check whether all 3 groups are similar or not
 
-        ```
+        ```python
         df_anova = pd.read_csv('PlantGrowth.csv')
         df_anova = df_anova[['weight','group']]
 
@@ -962,7 +962,7 @@ How does it work?
 
         Now let’s take a look at the Grand mean crop yield (the mean crop yield not by any sub-group), as well the mean crop yield by each factor, as well as by the factors grouped
 
-        ```
+        ```python
         import statsmodels.api as sm
         from statsmodels.formula.api import olsdf_anova2 = pd.read_csv("https://raw.githubusercontent.com/Opensourcefordatascience/Data-sets/master/crop_yield.csv")
 
@@ -976,7 +976,7 @@ How does it work?
 
     For example, in an election survey, voters might be classified by gender (male or female) and voting preference (Democrat, Republican, or Independent). We could use a chi-square test for independence to determine whether gender is related to voting preference
 
-    ```
+    ```python
     df_chi = pd.read_csv('chi-test.csv')
     contingency_table=pd.crosstab(df_chi["Gender"],df_chi["Shopping?"])
     print('contingency_table :-\n',contingency_table)
@@ -1032,7 +1032,7 @@ How does it work?
 - Precision and Recall as a measure of Relevance
 
 - Example: Two Datasets
-  ```
+  ```python
   # Actual Value
   labels =      [1, 0, 0, 1, 1, 1, 0, 1, 1, 1]
   # Predicted Value
@@ -1073,11 +1073,11 @@ How does it work?
 
 ### Recall: Why is accuracy not enough?
 - For the following code import:
-  ```
+  ```python
   from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
   ```
 - Take a look at this example:
-  ```
+  ```python
   labels =      [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
   predictions = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   print(accuracy_score(labels , predictions)*100)
@@ -1094,7 +1094,7 @@ How does it work?
 
 ### Precision: Why is recall still not enough?
 - Take a look at the following example:
-  ```
+  ```python
   labels =      [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
   predictions = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
   print(accuracy_score(labels , predictions)*100)
@@ -1119,7 +1119,7 @@ How does it work?
 - A confusion matrix is a matrix to represent the number of True Positives, False Positives, True Negatives, and False Negatives.
 
   ![image40]
-  ```
+  ```python
   # Actual Value
   labels =      [1, 0, 0, 1, 1, 1, 0, 1, 1, 1]
   # Predicted Value
@@ -1206,7 +1206,7 @@ How does it work?
   ```
 
   ***Confusion Matrix***
-  ```
+  ```python
   # Calculating Confusion Matrix using sklearn
   from sklearn.metrics import confusion_matrix
   confusion = confusion_matrix(labels, predictions)
@@ -1216,14 +1216,14 @@ How does it work?
   FP = confusion[0][1]
   ```
   ***Displaying Confusion Matrix as Bar Graph***
-  ```
+  ```python
   plt.bar(['False Negative' , 'True Negative' , 'True Positive' , 'False Positive'],[FN,TN,TP,FP])
   plt.show()
   ```
   ![image41]
 
   ***Displaying Confusion Matrix as Heatmap***
-  ```
+  ```python
   import seaborn as sns
   sns.heatmap(confusion , annot=True , xticklabels=['Negative' , 'Positive'] , yticklabels=['Negative' , 'Positive'])
   plt.ylabel("Label")
@@ -1233,7 +1233,7 @@ How does it work?
   ![image42]
 
   ***Displaying Confusion Matrix using Pandas***
-  ```
+  ```python
   import pandas as pd
   data = {'Labels' : labels, 'Predictions': predictions}
   df = pd.DataFrame(data, columns=['Labels','Predictions'])
@@ -1245,7 +1245,7 @@ How does it work?
   ***Using Sklearn to generate Classification Report***
 
   - For more Info check this [link](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html)
-  ```
+  ```python
   from sklearn.metrics import classification_report
   print(classification_report(labels,predictions))
   ```
